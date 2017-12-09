@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>UTL物联通资产系统</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="css/sm.css">
+    <link rel="stylesheet" href="iconfont/iconfont.css">
+     <link href="css/main.css" rel="stylesheet">
+ 
+  </head>
+  <body>
+    <div class="page-group">
+     <div class="page">
+      <header class="bar bar-nav bar-nav-blue mousemove" >
+          <a class="icon iconfont icon-jiantou-copy pull-left back" href="#" data-transition='slide-out'>
+    </a>
+    <h1 class="title">转移</h1>
+ </header>
+
+ <div class="content">
+    <div class="list-block ul-ptb">
+    <ul>
+      <!-- Text inputs -->
+ 
+      <li>
+        <div class="item-content">
+          <div class="item-inner">
+            <div class="item-title label">资产编码</div>
+            <div class="item-input">
+              <input type="text" placeholder="必填" id="assetId"/>
+            </div>
+           <div class="item-media">
+           <a href="#" class="btniconfont" onclick="assetScanning()"><i class="icon iconfont icon-saoyisao4 icon-saoma"></i></a>
+           </div>
+     </div>
+     </div>
+      </li>
+        <li>
+            <div class="item-content">
+                <div class="item-inner">
+                    <div class="item-title label">原属员工编码</div>
+                    <div class="item-input">
+                        <input type="text" placeholder="必填" id="oldEmployeeId"/>
+                    </div>
+                    <div class="item-media">
+                        <a href="#" class="btniconfont" onclick="oldEmployeeScanning()"><i class="icon iconfont icon-saoyisao3 icon-erweima"></i></a>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="item-content">
+                <div class="item-inner">
+                    <div class="item-title label">转给员工编码</div>
+                    <div class="item-input">
+                        <input type="text" placeholder="必填" id="transferEmployeeId"/>
+                    </div>
+                    <div class="item-media">
+                        <a href="#" class="btniconfont" onclick="transferEmployeeScanning()"><i class="icon iconfont icon-saoyisao3 icon-erweima"></i></a>
+                    </div>
+                </div>
+            </div>
+        </li>
+      <li>
+	        <div class="item-content">
+	            <div class="item-inner">
+	                <div class="item-title label">一级存放点</div>
+	                <div class="item-input">
+	                    <input type="text" id="picker-site-getplace" value="----" readOnly/>
+	
+	                </div>
+	            </div>
+	        </div>
+	    </li>
+	    <li>
+	        <div class="item-content">
+	            <div class="item-inner">
+	                <div class="item-title label">二级存放点</div>
+	                <div class="item-input">
+	                    <input type="text" id="picker-site-getplace2" value="----" readOnly/>
+	
+	                </div>
+	            </div>
+	        </div>
+	    </li>
+	    <li>
+	        <div class="item-content">
+	            <div class="item-inner">
+	                <div class="item-title label">三级存放点</div>
+	                <div class="item-input">
+	                    <input type="text" id="picker-site-getplace3" value="----" readOnly/>
+	
+	                </div>
+	            </div>
+	        </div>
+	    </li>
+      </ul>
+      </div>
+     <div class="content-block">
+  <a href="#" class="button button-big button-fill button-confirm" id="submitAssetTransfer">提交</a>
+  </div>
+    </div>
+   </div>
+        </div>
+ <script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script type='text/javascript' src="js/zepto.js" charset='utf-8'></script>
+<script type='text/javascript' src="js/sm.js" charset='utf-8'></script>
+<script type='text/javascript' src="js/asset.js" charset='utf-8'></script>
+<script>
+//资产编码
+function assetScanning(){
+	cordova.plugins.barcodeScanner.scan(
+      function (result) {
+          $("#assetId").val(result.text);    
+      }, 
+      function (error) {
+          $.alert("Scanning failed: " + error);
+      }
+   );
+} 
+//原属员工扫码
+function oldEmployeeScanning(){
+	cordova.plugins.barcodeScanner.scan(
+      function (result) {
+          $("#oldEmployeeId").val(result.text);    
+      }, 
+      function (error) {
+          $.alert("Scanning failed: " + error);
+      }
+   );
+} 
+//转给员工扫码
+function transferEmployeeScanning(){
+	cordova.plugins.barcodeScanner.scan(
+      function (result) {
+          $("#transferEmployeeId").val(result.text);    
+      }, 
+      function (error) {
+          $.alert("Scanning failed: " + error);
+      }
+   );
+} 
+
+$("#submitAssetTransfer").click(function(){
+	
+	var assetId=$("#assetId").val();  
+	if(!assetId){
+		$.alert("请输入资产编码");
+		return;
+	}
+	
+	var oldEmployeeId=$("#oldEmployeeId").val();   
+	if(!oldEmployeeId){
+		$.alert("请输入原属员工编码");
+		return;
+	}
+	
+	var transferEmployeeId=$("#transferEmployeeId").val();   
+	if(!transferEmployeeId){
+		$.alert("请输入转给员工编码");
+		return;
+	}
+	
+	var placeId=splitByBar($("#picker-site-getplace3").val())[1];
+	if(!placeId){
+		$.alert("请选择三级存放点");
+		return;
+	}
+	
+	$.ajax({
+	    type : "POST",
+	    url:serverUrl,
+	    headers:{"method":"assetTransfer","companyId":companyId,"deptId":deptId,"userId":userId,"EId":EId,"WId":WId,"CId":CId},
+	    async : false,
+	    // data: JSON.stringify({assetId:"A0101:020302-00001",oldemployeeId:"000101",newemployeeId:"000102",placeId:placeId}),
+	    data: JSON.stringify({assetId:assetId,oldemployeeId:oldEmployeeId,newemployeeId:transferEmployeeId,placeId:placeId}),
+	    dataType:'json',
+   		success: function(result){
+
+	    	$.alert(result.retInfo);
+	    	if(result.retCode==0){
+	    		//self.location='Index.html'; 
+	    		setTimeout("javascript:location.href='Index.html'", 1000); 
+	    	}
+   		 },
+   		error: function(XMLHttpRequest, textStatus, errorThrown) {
+            console.log(XMLHttpRequest.status);
+            $.alert('网络错误,请稍后再试!');
+   		},
+	}); 
+});
+</script>
+<script>
+	var placeMax=[];
+	var placeNames=[];//一级存放
+	var placeIds=[];
+
+	var placeMid=[];
+	var placeMidNames=[];//二级存放
+	var placeMidIds=[];
+	
+	var placeSub=[];
+	var placeSubNames=[];//三级存放
+	var placeSubIds=[];
+	
+	var maxPlaceValue;
+	var midPlaceValue;
+	var subPlaceValue;
+
+	//点击一级存放点
+	$("#picker-site-getplace").click(function(){
+		$("#picker-site-getplace2").val("----");
+		$("#picker-site-getplace3").val("----");
+    	$.ajax({
+		    type : "POST",
+		   	url:serverUrl,
+		    headers:{"method":"getPlace","companyId":companyId,"deptId":deptId,"userId":userId,"EId":EId,"WId":WId,"CId":CId},
+		    async : false,
+		    data: {},
+		    dataType:'json',
+		    success: function(result){
+		   		
+		    	if(result.retCode==0){
+		    		var jsonArr=JSON.parse(result.placeInfo).placeInfo;
+					placeMax[0]="----";//设置下拉选择的默认值
+		   			for(var i=0;i<jsonArr.length;i++){
+		   				placeNames[i]=jsonArr[i].placeName;
+		   			}
+		   			for(var i=0;i<jsonArr.length;i++){
+		   				placeIds[i]=jsonArr[i].placeId;
+		   			}
+		   			for(var i=0;i<jsonArr.length;i++){
+		   				placeMax[i+1]=jsonArr[i].placeName+"-"+jsonArr[i].placeId;
+		   			}
+		   		}else{
+		   			placeNames=[];
+		   			placeIds=[];
+		   			placeMax=[];
+		   		}
+	   		 },
+	   		error: function(XMLHttpRequest, textStatus, errorThrown) {
+	            console.log(XMLHttpRequest.status);
+	            $.alert('网络错误,请稍后再试!');
+       		},
+		}); 
+	});
+	
+	//点击二级存放点
+	$("#picker-site-getplace2").on("click", function(){
+		maxPlaceValue=$("#picker-site-getplace").val();
+		$("#picker-site-getplace3").val("----");
+		if(maxPlaceValue=="----"){
+			$.alert('请先选择一级存放点!');
+			$("#picker-site-getplace").val("----");
+			$("#picker-site-getplace2").val("----");
+		}else{
+			var maxArr=splitByBar(maxPlaceValue);
+			var placeId=maxArr[1];
+			
+			$.ajax({
+			    type : "POST",
+			    url:serverUrl,
+			    headers:{"method":"getPlace2","companyId":companyId,"deptId":deptId,"userId":userId,"EId":EId,"WId":WId,"CId":CId},
+			    async : false,
+			    data: JSON.stringify({placeId:placeId}),
+			    dataType:'json',
+		   		success: function(result){
+			   		
+			    	if(result.retCode==0){
+						var jsonArr=JSON.parse(result.placeInfo).placeInfo;
+						placeMid[0]="----";
+			   			for(var i=0;i<jsonArr.length;i++){
+			   				placeMidNames[i]=jsonArr[i].placeName;
+			   			}
+			   			for(var i=0;i<jsonArr.length;i++){
+			   				placeMidIds[i]=jsonArr[i].placeId;
+			   			}
+			   			for(var i=0;i<jsonArr.length;i++){
+			   				placeMid[i+1]=jsonArr[i].placeName+"-"+jsonArr[i].placeId;
+			   			}
+			   		}else{
+			   			placeMidNames=[];
+			   			placeMidIds=[];
+			   			placeMid=[];
+			   		}
+		   		 },
+		   		error: function(XMLHttpRequest, textStatus, errorThrown) {
+		            console.log(XMLHttpRequest.status);
+		            $.alert('网络错误,请稍后再试!');
+	       		},
+			}); 
+		}
+	});
+		
+	//点击三级存放点
+	$("#picker-site-getplace3").click(function(){
+		midPlaceValue=$("#picker-site-getplace2").val();
+		if(midPlaceValue=="----"){
+			$.alert('请先选择二级存放点!');
+			$("#picker-site-getplace2").val("----");
+			$("#picker-site-getplace3").val("----");
+		}else{
+			var midArr=splitByBar(midPlaceValue);
+			var placeMidId=midArr[1];
+			
+			$.ajax({
+			    type : "POST",
+			    url:serverUrl,
+			    headers:{"method":"getPlace3","companyId":companyId,"deptId":deptId,"userId":userId,"EId":EId,"WId":WId,"CId":CId},
+			    async : false,
+			    data: JSON.stringify({placeId:placeMidId}),
+			    dataType:'json',
+		   		success: function(result){
+			   		
+			    	if(result.retCode==0){
+						var jsonArr=JSON.parse(result.placeInfo).placeInfo;
+						placeSub[0]="----";//设置下来选择的默认值
+			   			for(var i=0;i<jsonArr.length;i++){
+			   				placeSubNames[i]=jsonArr[i].placeName;
+			   			}
+			   			for(var i=0;i<jsonArr.length;i++){
+			   				placeSubIds[i]=jsonArr[i].placeId;
+			   			}
+			   			for(var i=0;i<jsonArr.length;i++){
+			   				placeSub[i+1]=jsonArr[i].placeName+"-"+jsonArr[i].placeId;
+			   			}
+			   		}else{
+			   			placeSubNames=[];
+			   			placeSubIds=[];
+			   			placeSub=[];
+			   		}
+		   		 },
+		   		error: function(XMLHttpRequest, textStatus, errorThrown) {
+		            console.log(XMLHttpRequest.status);
+		            $.alert('网络错误,请稍后再试!');
+	       		},
+			}); 
+		}
+	});
+
+	//一级存放选择
+	$("#picker-site-getplace").picker({
+	
+		  inputReadOnly:true,
+		  toolbarTemplate: '<header class="bar bar-nav">\<button class="button button-link pull-left"></button>\<button class="button button-link pull-right close-picker">确定</button>\<h1 class="title">一级存放点</h1>\</header>',
+		  cols: [
+		    {
+		      textAlign: 'center',
+		      values: placeMax,
+		    }
+		  ],
+		  onClose:function(){
+			  maxPlaceValue=$("#picker-site-getplace").val();
+		  }
+	});
+	
+	//二级选择 
+	$("#picker-site-getplace2").picker({
+		  inputReadOnly:true,
+		  toolbarTemplate: '<header class="bar bar-nav">\<button class="button button-link pull-left"></button>\<button class="button button-link pull-right close-picker">确定</button>\<h1 class="title">二级存放点</h1>\</header>',
+		  cols: [
+		    {
+		      textAlign: 'center',
+		      values: placeMid,
+		    }
+		  ],
+		  onClose:function(){
+			  midPlaceValue=$("#picker-site-getplace2").val();
+			  if(midPlaceValue=="----"&&maxPlaceValue!="----"&&maxPlaceValue){
+				  $.alert('请选择二级存放点!');
+			  }
+		  }
+	});
+	
+	//三级存放选择
+	$("#picker-site-getplace3").picker({
+		  inputReadOnly:true,
+		  toolbarTemplate: '<header class="bar bar-nav">\<button class="button button-link pull-left"></button>\<button class="button button-link pull-right close-picker">确定</button>\<h1 class="title">三级存放点</h1>\</header>',
+		  cols: [
+		    {
+		      textAlign: 'center',
+		      values: placeSub,
+		    }
+		  ],
+		  onClose:function(){
+			  subPlaceValue=$("#picker-site-getplace3").val();
+			  if(subPlaceValue=="----"&&maxPlaceValue!="----"&&midPlaceValue!="----"){
+				  $.alert('请选择三级存放点!');
+			  }
+		  }
+	}); 
+</script>
+</body>
+</html>

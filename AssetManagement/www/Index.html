@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>UTL物联通资产系统</title>
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="stylesheet" href="css/sm.css">
+<link rel="stylesheet" href="iconfont/iconfont.css">
+<link href="css/main.css" rel="stylesheet">
+<link href="css/demos.css" rel="stylesheet">
+
+<script type='text/javascript' src="js/zepto.js" charset='utf-8'></script>
+<script type='text/javascript' src="js/sm.js" charset='utf-8'></script>
+<script type='text/javascript' src="js/asset.js" charset='utf-8'></script>     
+<script type='text/javascript' src="js/config.js" charset='utf-8'></script>
+<script type='text/javascript' src="js/demos.js" charset='utf-8'></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="cordova.js"></script>
+
+</head>
+<body style="padding-bottom: 20px">
+<!-- <body onload="onLoad()"> -->
+    <div class="page-group">
+		<div class="page" id="router">
+		    
+		  <header class="banner ">
+		    <div class="bar bar-nav barnav-opacity">
+		     <a class="button button-link button-nav pull-left" href="#" data-transition='slide-out'>
+		      <i class="icon iconfont icon-fanhui"></i>
+		    </a>
+		    <h1 class="title">UTL物联通资产系统</h1>
+		        <a class="button button-link button-nav pull-right" href="Login.html" onclick="back()" data-transition='slide-out'>
+		            <i class="icon iconfont icon-iconfontwodea-copy-copy"></i>
+		        </a>
+		 </div> 
+ </header>
+   <div class="content grid-demo" style="top:5rem">
+    <div class="row div-menu no-gutter">
+      <div class="col-100"><h4>固定资产</h4></div>
+      <div class="col-25 text-center"><a href="FixedAssetRegister.html" external><i class=" iconfont icon-dengji font-color1 center-block"></i>登记</a></div>
+     <div class="col-25 text-center"><a href="FixedAssetInventoryList.html" external><i class="icon iconfont icon-kucunpandian font-color2 center-block"></i>盘点</a></div>
+   	 <div class="col-25 text-center"><a href="FixedAssetQuery.html" external ><i class="icon iconfont icon-chaxun1 font-color3 center-block"></i>查询</a></div>
+  <!--   <div class="col-25 text-center"><a href="test.html" external><i class="icon iconfont icon-baobiao font-color4 center-block"></i>报表</a></div>-->
+     <div class="col-25 text-center"><a href="FixedAssetCancel.html" external><i class="icon iconfont icon-4 font-color9 center-block"></i>报废</a></div>
+     <div class="col-25 text-center"><a href="FixedAssetUse.html" external><i class="icon iconfont icon-fankui font-color5 center-block"></i>领用</a></div>
+     <div class="col-25 text-center"><a href="FixedAssetReturn.html" external><i class="icon iconfont icon-guihuan font-color6 center-block"></i>归还</a></div>
+     <div class="col-25 text-center"><a href="FixedAssetTransfers.html" external><i class="icon iconfont icon-transfer font-color7 center-block"></i>转移</a></div>
+     <div class="col-25 text-center"><a href="FixedAssetRepair.html" external><i class="icon iconfont icon-weixiu1 font-color8 center-block"></i>维修</a></div>
+     <div class="col-25 text-center"><a href="FixedAssetFinishRepair.html" external><i class="icon iconfont icon-weixiuwancheng font-color2 center-block"></i>完成维修</a></div>
+
+    </div>
+       <div class="row div-menu no-gutter">
+        <div class="col-100"><h4>易耗品</h4></div>
+           <!-- <div class="col-25 text-center"><a href="ConsumableRegister.html" ><i class="icon iconfont icon-dengji font-color1 center-block"></i>入库</a></div>-->
+                  <div class="col-25 text-center"><a href="ConsumableRegister.html" external ><i class="icon iconfont icon-cf-c55 font-color10 center-block"></i>入库</a></div>
+           <div class="col-25 text-center"><a href="ConsumableUse.html"  external><i class="icon iconfont icon-cf-c54 font-color11 center-block"></i>领用</a></div>
+     <div class="col-25 text-center"><a href="ConsumableInventoryList.html"  external><i class="icon iconfont icon-kucunpandian font-color2 center-block"></i>盘点</a></div>
+   	 <div class="col-25 text-center"><a href="ConsumableQuery.html"  external><i class="icon iconfont icon-chaxun1 font-color3 center-block"></i>查询</a></div>
+  
+    </div>
+
+       <div class="row div-menu no-gutter">
+    <div class="col-100"><h4>无形资产</h4></div>
+     <div class="col-25 text-center"><a href="IntangibleAssetRegister.html" external ><i class="icon iconfont icon-dengji font-color1 center-block"></i>登记</a></div>
+   	 <div class="col-25 text-center"><a href="IntangibleAssetQuery.html" external ><i class="icon iconfont icon-chaxun1 font-color3 center-block"></i>查询</a></div>
+   </div>
+  </div>
+    
+</div>
+</div>
+
+<script type="text/javascript">
+
+
+// 	$(document).ready(function(){
+// 	 	//本地存储
+// 	 	var storage = window.localStorage; 
+// 	 	//alert(storage["userName"]);
+	 	
+	 	
+// 		// 等待加载
+// 		document.addEventListener("deviceready", onDeviceReady, false); 
+// 		// 加载完毕
+////	function onDeviceReady() {
+// 		//按钮事件
+// 			document.addEventListener("backbutton", eventBackButton, false); //返回键
+// 		} 
+// 		function eventBackButton(){
+// 	 		alert(888);
+// 		} 
+
+// 	}); 
+	
+</script>
+</body>
+</html>

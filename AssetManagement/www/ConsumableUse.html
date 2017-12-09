@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>UTL物联通资产系统</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="css/sm.css">
+    <link rel="stylesheet" href="iconfont/iconfont.css">
+     <link href="css/main.css" rel="stylesheet">
+ 
+  </head>
+  <body>
+    <div class="page-group">
+   <div class="page">
+    <header class="bar bar-nav bar-nav-blue mousemove" >
+          <a class="icon iconfont icon-jiantou-copy pull-left back" href="#" data-transition='slide-out'>
+    </a>
+    <h1 class="title">易耗品领用</h1>
+        <a href="#" class="btniconfont" onclick="onScanning()"><i
+                class="icon iconfont icon-saoyisao1 pull-right"></i></a>
+ </header>
+
+ <div class="content">
+    <div class="list-block ul-ptb" >
+    <ul>
+       <!--  <li>
+        <div class="item-content">
+          <div class="item-inner">
+            <div class="item-title label">自定义编码</div>
+            <div class="item-input">
+              <input type="text" placeholder="必填" id="consumableCode"/>
+            </div>
+           <div class="item-media">
+           <a href="#" class="btniconfont"><i class="icon iconfont icon-saoyisao4 icon-saoma"></i></a>
+           </div>
+
+     </div>
+     </div>
+     </li> -->
+	    <li>
+	        <div class="item-content">
+	          <div class="item-inner">
+	            <div class="item-title label">自定义编码</div>
+	            <div class="item-input">
+	               <div class="row">
+	                    <div class="col-75"> <input type="text" placeholder="必填" id="consumableCode"/></div>
+	                    <div class="col-25"><a href="javascript:;" class="button button-big button-fill button-h" id="confirm">确认</a></div>
+	                </div>
+	            </div>
+	    	 </div>
+	       </div>
+	     </li>
+         <li>
+        <div class="item-content">
+          <div class="item-inner">
+            <div class="item-title label">易耗品名称</div>
+            <div class="item-input">
+              <input type="text" id="consumableName" disabled/>
+            </div>
+           
+     </div>
+     </div>
+      </li>
+        <li>
+            <div class="item-content">
+                <div class="item-inner">
+                    <div class="item-title label">员工编码</div>
+                    <div class="item-input">
+                        <input type="text" placeholder="必填" id="employee"/>
+                    </div>
+                    <div class="item-media">
+                        <a href="#" class="btniconfont" onclick="onScanEmployee();"><i class="icon iconfont icon-saoyisao3 icon-erweima"></i></a>
+                    </div>
+
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="item-content">
+                <div class="item-inner">
+                    <div class="item-title label">领用数量</div>
+                    <div class="item-input">
+                        <input type="text" id="getNum" placeholder="必填"/>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="item-content">
+                <div class="item-inner">
+                    <div class="item-title label">库存数量</div>
+                    <div class="item-input">
+                        <input type="text" id="stock" disabled/>
+                    </div>
+                </div>
+            </div>
+        </li>
+       <li>
+        <div class="item-content">
+          <div class="item-inner">
+            <div class="item-title label">单价</div>
+            <div class="item-input">
+              <input type="text" id="price" disabled/>
+            </div>
+           
+     </div>
+     </div>
+      </li>
+        <li>
+            <div class="item-content">
+                <div class="item-inner">
+                    <div class="item-title label">单位</div>
+                    <div class="item-input">
+                        <input type="text"  id="unit" disabled/>
+                    </div>
+
+                </div>
+            </div>
+        </li>
+       <li>
+        <div class="item-content">
+          <div class="item-inner">
+            <div class="item-title label">供应商</div>
+            <div class="item-input">
+              <input type="text" id="supplier" disabled/>
+            </div>
+           
+     </div>
+     </div>
+      </li>
+      <li>
+        <div class="item-content">
+          <div class="item-inner">
+            <div class="item-title label">存放位置</div>
+            <div class="item-input">
+                <input type="text" id="picker-site" disabled/>
+            </div>
+   		 </div>
+   		</div>
+      </li>
+
+       <li>
+        <div class="item-content">
+          <div class="item-inner">
+            <div class="item-title label">照片</div>
+            <div class="item-input addphoto">
+                <a href="#"><img class="imgbox" src="img/Assetsimage/timg.jpg" > </a>
+            </div>
+           
+     </div>
+     </div>
+      </li>
+      </ul>
+      </div>
+     <div class="content-block">
+  <a href="#" class="button button-big button-fill button-success" id="submit">确定</a>
+  </div>
+    </div>
+   </div>
+</div>
+<!-- 弹出层 -->
+<div style="background: #ffffff;display:none">
+    <p><a class="alert-text-title" >提示</a></p>
+</div>
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script type='text/javascript' src="js/zepto.js" charset='utf-8'></script>
+<script type='text/javascript' src="js/sm.js" charset='utf-8'></script>
+<script type='text/javascript' src="js/asset.js" charset='utf-8'></script>
+<script type='text/javascript'>
+$("#confirm").click(function(){
+	var consumableCode=$("#consumableCode").val();
+	if(!consumableCode){
+		$.alert('请输入自定义编码');
+		return;
+	}
+
+	$.ajax({
+	    type : "POST",
+	    url:serverUrl,
+	    headers:{"method":"consumableInput","companyId":companyId,"deptId":deptId,"userId":userId,"EId":EId,"WId":WId,"CId":CId},
+	    async : false,
+	    data: JSON.stringify({consumableCode:consumableCode}),
+	    dataType:'json',
+   		success: function(result){
+	    	if(result.retCode==0){
+	    		$("#consumableName").val(result.consumableName);
+	    		$("#stock").val(result.stock);
+	    		$("#price").val(result.price);
+	    		$("#unit").val(result.unit);
+	    		$("#supplier").val(result.supplier);
+	    		$(".imgbox").attr('src',serverPicUrl+result.picture);
+	    		$("#picker-site").val(result.placeName1+" "+result.placeName2+" "+result.placeName);
+	    		
+	   		}else{
+	   			$.alert(result.retInfo);
+	   			$("#consumableName").val('');
+	    		$("#stock").val('');
+	    		$("#price").val('');
+	    		$("#unit").val('');
+	    		$("#supplier").val('');
+	    		$(".imgbox").attr('');
+	    		$("#picker-site").val('');
+	    		$("#employee").val('');
+	    		$("#getNum").val('');
+	    		$(".imgbox").attr('src','img/addphoto.png');
+	   		}
+   		 },
+   		error: function(XMLHttpRequest, textStatus, errorThrown) {
+            console.log(XMLHttpRequest.status);
+            $.alert('网络错误,请稍后再试!');
+   		},
+	}); 
+});
+
+function onScanning(){
+	cordova.plugins.barcodeScanner.scan(
+	      function (result) {
+				var consumableId=result.text;
+				$("#consumableCode").val(consumableId.substr(6));
+				$.ajax({
+				    type : "POST",
+				    url:serverUrl,
+				    headers:{"method":"consumableScancode","companyId":companyId,"deptId":deptId,"userId":userId,"EId":EId,"WId":WId,"CId":CId},
+				    async : false,
+				    data: JSON.stringify({consumableId:consumableId}),
+				    dataType:'json',
+			   		success: function(result){
+			   			if(result.retCode==0){
+				    		
+				    		$("#consumableName").val(result.consumableName);
+				    		$("#stock").val(result.stock);
+				    		$("#price").val(result.price);
+				    		$("#unit").val(result.unit);
+				    		$("#supplier").val(result.supplier);
+				    		$(".imgbox").attr('src',serverPicUrl+result.picture);
+				    		$("#picker-site").val(result.placeName1+" "+result.placeName2+" "+result.placeName);
+				    		
+				   		}else{
+				   			$.alert(result.retInfo);
+				   			$("#consumableName").val('');
+				    		$("#stock").val('');
+				    		$("#price").val('');
+				    		$("#unit").val('');
+				    		$("#supplier").val('');
+				    		$(".imgbox").attr('');
+				    		$("#picker-site").val('');
+				    		$("#employee").val('');
+				    		$("#getNum").val('');
+				    		$(".imgbox").attr('src','img/addphoto.png');
+				   		}
+			   		 },
+			   		error: function(XMLHttpRequest, textStatus, errorThrown) {
+			            console.log(XMLHttpRequest.status);
+			            $.alert('网络错误,请稍后再试!');
+			   		},
+				}); 
+	      }, 
+	      function (error) {
+	          $.alert("Scanning failed: " + error);
+	      }
+	);
+}
+
+function onScanEmployee(){
+	cordova.plugins.barcodeScanner.scan(
+	      function (result) {
+	          $("#employee").val(result.text);    
+	      }, 
+	      function (error) {
+	          $.alert("Scanning failed: " + error);
+	      }
+	   );
+}
+
+$("#submit").click(function(){
+	var consumableCode=$("#consumableCode").val();
+	if(!consumableCode){
+		$.alert('请输入自定义编码');
+		return;
+	}
+	var employee=$("#employee").val();
+	if(!employee){
+		$.alert('请输入员工编码');
+		return;
+	}
+	var getNum=$("#getNum").val();
+	if(!isNum(getNum)){
+		$.alert('请输入大于0的领用数量');
+		return;
+	}
+	var optype="out";
+	
+	//加一个编码判断
+	var consumableName=$("#consumableName").val();
+	var stock=$("#stock").val();
+	var price=$("#price").val();
+	var unit=$("#unit").val();
+	var supplier=$("#supplier").val();
+	var place=$("#picker-site").val();
+	if(!consumableName&&!stock&&!price&&!unit&&!supplier&&!place){
+		$.alert('请确认自定义编码,选择已入库的易耗品!!!');
+		return;
+	}
+	
+	$.confirm('领用'+getNum+$("#unit").val()+$("#consumableName").val(),'',
+        function () {
+	          $.ajax({
+	      	    type : "POST",
+	      	    url:serverUrl,
+	      	    headers:{"method":"outConsumable","companyId":companyId,"deptId":deptId,"userId":userId,"EId":EId,"WId":WId,"CId":CId},
+	      	    async : false,
+	      	    data: JSON.stringify({consumableCode:consumableCode,employeeId:employee,optype:optype,num:getNum}),
+	      	    dataType:'json',
+	         		success: function(result){
+	         			if(result.retCode==0){
+	         			    setTimeout("javascript:location.href='Index.html'", 500); 
+		      	   		}else{
+		      	   			$.alert(result.retInfo);
+		      	   		//$.alert('请确认自定义编码,选择已入库的易耗品!!!');
+		      	   		}
+	         		 },
+	         		error: function(XMLHttpRequest, textStatus, errorThrown) {
+	                  console.log(XMLHttpRequest.status);
+	                  $.alert('网络错误,请稍后再试!');
+	         		},
+	      		}); 
+        },
+        function () {
+      
+        });
+});
+
+</script>
+</body>
+</html>

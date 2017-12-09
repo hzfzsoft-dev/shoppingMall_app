@@ -1,0 +1,192 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>UTL物联通资产系统</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="css/sm.css">
+    <link rel="stylesheet" href="iconfont/iconfont.css">
+    <link rel="stylesheet" href="css/demos.css">
+    <link href="css/main.css" rel="stylesheet">
+
+</head> 
+<body>
+<div class="page-group">
+    <div class="page">
+    <header class="bar bar-nav bar-nav-blue mousemove">
+        <a class="icon iconfont icon-jiantou-copy pull-left back" href="#" data-transition='slide-out'>
+        </a>
+
+        <h1 class="title">易耗品查询</h1>
+        <a href="#" class="btniconfont"  onclick="onScanning()"><i
+                class="icon iconfont icon-saoyisao1 pull-right"></i></a>
+    </header>
+
+    <div class="content  margin-b">
+
+        <div class="content-block tab-content" >
+
+                <div id="criteria" class="criteria">
+                    <div class="list-block">
+                        <ul> <li>
+                                <div class="item-content">
+                                    <div class="item-inner">
+                                        <div class="item-title label">自定义编码</div>
+                                        <div class="item-input">
+                                            <input type="text" id="searchCode"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="item-content">
+                                    <div class="item-inner">
+                                        <div class="item-title label">易耗品名称</div>
+                                        <div class="item-input">
+                                            <input type="text" id="searchName"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="content-block m-tb0">
+                        <a href="#" class="button button-big button-fill button-warning" id="search">查询</a>
+                    </div>
+                </div>
+
+              <div class="text-center"><a href="#" class="btniconfont hidecriteria" id="hidecriteria"><i
+                        class="icon iconfont icon-icon-double-arrow-up icon-arrow"></i></a>
+                    <a href="#" class="btniconfont arrow-hide showcriteria" id="showcriteria"><i
+                            class="icon iconfont icon-icon-copy icon-arrow"></i></a>
+                </div>
+            </div>
+       <!--  <div class="content-block-title m-t1" >易耗品列表</div> -->
+        <div id="consumableList"></div>
+	 </div>
+    <div class="bar bar-footer bar-footer-p">
+        <span id="count"></span>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script type='text/javascript' src="js/zepto.js" charset='utf-8'></script>
+<script type='text/javascript' src="js/sm.js" charset='utf-8'></script>
+<script type="text/javascript" src="js/category.js" charset="utf-8"></script>
+<script type='text/javascript' src="js/asset.js" charset='utf-8'></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".hidecriteria").click(function () {
+            $(".criteria").hide();
+            $(".showcriteria").show();
+            $(".hidecriteria").hide();
+        });
+        $(".showcriteria").click(function () {
+            $(".criteria").show();
+            $(".hidecriteria").show();
+            $(".showcriteria").hide();
+        });
+        
+        //全部列表
+        headers={"method":"getConsumableList","companyId":companyId,"deptId":deptId,"userId":userId,"EId":EId,"WId":WId,"CId":CId};
+        data={};
+        joinHtml(headers,data);
+       
+    });
+    
+    //条件搜索查询
+    $("#search").click(function(){
+ 
+    	var consumableCode=$("#searchCode").val();
+    	var consumableName=$("#searchName").val();
+    	 
+        headers={"method":"cListCondition","companyId":companyId,"deptId":deptId,"userId":userId,"EId":EId,"WId":WId,"CId":CId};
+        data=JSON.stringify({consumableName:consumableName,consumableCode:consumableCode});
+    	joinHtml(headers,data);
+    });
+    
+   //扫码查询
+   function onScanning(){
+		cordova.plugins.barcodeScanner.scan(
+		      function (result) {
+					var consumableId=result.text;
+					$("#searchCode").val(consumableId.substr(6));
+					 headers={"method":"cListScancode","companyId":companyId,"deptId":deptId,"userId":userId,"EId":EId,"WId":WId,"CId":CId};
+			        data=JSON.stringify({consumableId:consumableId});
+			    	joinHtml(headers,data);
+		      }, 
+		      function (error) {
+		          $.alert("扫码失败" + error);
+		      }
+		);
+	}
+    
+    //获取拼接列表
+    function joinHtml(headers,data){
+        $.ajax({
+		    type : "POST",
+		    url:serverUrl,
+		    headers:headers,
+		    data: data,
+		    dataType:'json',
+	   		success: function(result){
+	   			//console.log(result);
+	   			if(result.retCode==0){
+	   				var jsonArr=JSON.parse(result.consumableInfo).consumableInfo;
+	   				console.log(jsonArr);
+	   				if(jsonArr){
+	   					$("#count").text('共有'+jsonArr.length+'笔记录');
+			    		var html='';
+			    		for(var i=0;i<jsonArr.length;i++){
+			    			html+='<div class="list-block">'+
+			    	            		'<ul>'+
+							                '<li class="item-content item-link">'+
+							                    '<div class="item-inner">'+
+							                        '<div class="list-card" onclick="getConsumableDetail('+"'"+jsonArr[i].consumableCode+"'"+');">'+
+							                            '<div class="list-table-content">'+
+							                                '<ul>'+
+							                                    '<li><span> 自定义编码：</span><label>'+jsonArr[i].consumableCode+'</label></li>'+
+							                                    '<li><span> 系统易耗品编码：</span><label>'+jsonArr[i].consumableId+'</label></li>'+
+							                                    '<li><span> 易耗品名称：</span><label >'+jsonArr[i].consumableName+'</label></li>'+
+							                                    '<li><span> 易耗品单位：</span><label >'+jsonArr[i].unit+'</label></li>'+
+							                                    '<li>'+
+							                                        '<span> 数量：</span><label >'+jsonArr[i].num+'</label></li>'+
+							                                    '<li>'+
+							                                        '<span> 存放位置：</span><label >'+jsonArr[i].placeName1+' '+jsonArr[i].placeName2+' '+jsonArr[i].placeName+'</label></li>'+
+							                                '</ul>'+
+							                              '</div>'+
+							                        '</div>'+
+							                    '</div>'+
+							                '</li>'+
+						            	'</ul>'+
+						        '</div>'
+			    		}
+			    		$("#consumableList").html(html);
+			    	}else{
+			    		$("#consumableList").html('');
+		    		}
+   				}else{
+		   		 	$.alert('请稍后再试!');
+		   		}
+	   		 },
+	   		error: function(XMLHttpRequest, textStatus, errorThrown) {
+	            console.log(XMLHttpRequest.status);
+	            $.alert('网络错误,请稍后再试!');
+       		},
+		}); 
+    }
+    
+    function getConsumableDetail(consumableCode){
+    	 location.href="ConsumableDetail.html?consumableCode="+consumableCode;
+    }
+    
+</script>
+</body>
+</html>

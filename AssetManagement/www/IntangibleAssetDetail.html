@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>UTL物联通资产系统</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="css/sm.css">
+    <link rel="stylesheet" href="iconfont/iconfont.css">
+     <link href="css/main.css" rel="stylesheet">
+ 
+  </head>
+  <body>
+    <div class="page-group">
+        <div class="page">
+      <header class="bar bar-nav bar-nav-blue mousemove" >
+          <a class="icon iconfont icon-jiantou-copy pull-left back" href="#" data-transition='slide-out'>
+    </a>
+    <h1 class="title">无形资产详情</h1>
+ </header>
+
+ <div class="content">
+    <div class="list-block ul-ptb" >
+    <ul>
+      <!-- Text inputs -->
+ 
+      <li>
+        <div class="item-content">
+          <div class="item-inner">
+            <div class="item-title label">自定义编码</div>
+            <div class="item-input">
+              <input type="text" placeholder="必填" id="intangibleCode" disabled/>
+            </div>
+
+     </div>
+     </div>
+      </li>
+          <li>
+        <div class="item-content">
+          <div class="item-inner">
+            <div class="item-title label">无形资产名称</div>
+            <div class="item-input">
+              <input type="text" placeholder="必填" id="intangibleName" disabled/>
+            </div>
+           
+     </div>
+     </div>
+      </li>
+          <li>
+        <div class="item-content">
+          <div class="item-inner">
+            <div class="item-title label">数量</div>
+            <div class="item-input">
+              <input type="text"  placeholder="必填" id="num" disabled/>
+            </div>
+           
+     </div>
+     </div>
+      </li>
+       <li>
+        <div class="item-content">
+          <div class="item-inner">
+            <div class="item-title label">折旧年限</div>
+            <div class="item-input">
+              <input type="text" id="depreciation" value="0" disabled/>
+            </div>
+           
+     </div>
+     </div>
+      </li>
+       <li>
+        <div class="item-content">
+          <div class="item-inner">
+            <div class="item-title label">购置日期</div>
+            <div class="item-input">
+                <input type="date"  value="2017-05-10" id="purchaseDate" disabled>
+            </div>
+           
+     </div>
+     </div>
+      </li>
+       <li>
+        <div class="item-content">
+          <div class="item-inner">
+            <div class="item-title label">照片</div>
+              <div class="item-input addphoto create-actions">
+                  <!-- <a><i class="icon iconfont icon-xiangji1 create-actions"></i>添加照片</a>-->
+                  <a style="height:8.5rem;width:100%" onclick="getPic();"><input type="hidden" id="fileName"/> <img  style="height:8.5rem;width:100%" class="imgbox" src="img/addphoto.png" /></a>
+              </div>
+           
+     </div>
+     </div>
+      </li>
+        <li>
+            <div class="item-content">
+                <div class="item-inner">
+                    <div class="item-title label">备注</div>
+                    <div class="item-input">
+                        <textarea class="form-control"  cols="10" rows="4" style="height:6rem;width:100%" id="note" disabled></textarea>
+                    </div>
+
+                </div>
+            </div>
+        </li>
+      </ul>
+      </div>
+    </div>
+   </div>
+ </div>
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script type='text/javascript' src="js/zepto.js" charset='utf-8'></script>
+<script type='text/javascript' src="js/sm.js" charset='utf-8'></script>
+<script type='text/javascript' src="js/asset.js" charset='utf-8'></script>
+<script type="text/javascript">
+$(document).ready(function () {
+
+	 var str=location.href; 
+	 var intangibleCode=str.split("?")[1].split("=")[1];
+	 
+	 $.ajax({
+		    type : "POST",
+		   	url:serverUrl,
+		   // url:"http://192.168.3.93/api/AppService.aspx",
+		    headers:{"method":"getWuxingInfo","companyId":companyId,"deptId":deptId,"userId":userId,"EId":EId,"WId":WId,"CId":CId},
+		    data: JSON.stringify({intangibleCode:intangibleCode}),
+		    dataType:'json',
+	   		success: function(result){
+	   			console.log(JSON.stringify({intangibleCode:intangibleCode}));
+	   			console.log(result);
+	   			if(result.retCode==0){
+					$("#purchaseDate").val(result.purchaseDate);
+					$("#depreciation").val(result.depreciation);
+					$("#num").val(result.num);
+					$("#intangibleName").val(result.intangibleName);
+					$("#intangibleCode").val(result.intangibleCode);
+					$(".imgbox").attr('src',serverPicUrl+result.picture);
+	   				
+				}else{
+		   		 	$.alert('请稍后再试!');
+		   		}
+	   		 },
+	   		error: function(XMLHttpRequest, textStatus, errorThrown) {
+	            console.log(XMLHttpRequest.status);
+	            $.alert('网络错误,请稍后再试!');
+    		},
+		}); 
+});
+
+</script>
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>UTL物联通资产系统</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="css/sm.css">
+    <link rel="stylesheet" href="iconfont/iconfont.css">
+     <link href="css/main.css" rel="stylesheet">
+ <link href="css/table.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="page-group">
+      <header class="bar bar-nav bar-nav-blue mousemove" >
+     <a class="icon iconfont icon-jiantou-copy pull-left" href="#" data-transition='slide-out'>
+    </a>
+    <h1 class="title">易耗品盘点</h1>
+ </header>
+
+ <div class="content">
+    <div class="list-block ul-ptb" >
+    <ul>
+      <!-- Text inputs -->
+     <li>
+        <div class="item-content">
+          <div class="item-inner">
+            <div class="item-title label">盘点单号</div>
+            <div class="item-input">
+              <input type="text" disabled />
+            </div>
+           
+     </div>
+     </div>
+      </li>
+      <li>
+        <div class="item-content">
+          <div class="item-inner">
+            <div class="item-title label">物资编码</div>
+            <div class="item-input">
+              <input type="text" placeholder="必填"/>
+            </div>
+           <div class="item-media">
+            <button onclick="getJson()">Test</button>
+           <a href="#" class="btniconfont"><i class="icon iconfont icon-saoyisao4 icon-saoma"></i></a>
+           </div>
+     </div>
+     </div>
+      </li>
+          <li>
+        <div class="item-content">
+          <div class="item-inner">
+            <div class="item-title label">物资名称</div>
+            <div class="item-input">
+              <input type="text" placeholder="必填"/>
+            </div>
+           
+     </div>
+     </div>
+      </li>
+          <li>
+        <div class="item-content">
+          <div class="item-inner">
+            <div class="item-title label">数量</div>
+            <div class="item-input">
+              <input type="text" />
+            </div>
+           
+     </div>
+     </div>
+      </li>
+   
+       <li>
+        <div class="item-content">
+          <div class="item-inner">
+            <div class="item-title label">盘点时间</div>
+            <div class="item-input">
+              <input type="text" id='datetime-picker'/>
+
+            </div>
+           
+     </div>
+     </div>
+      </li>
+      <li>
+        <div class="item-content">
+          <div class="item-inner">
+            <div class="item-title label">存放位置1</div>
+            <div class="item-input">
+     		<select>
+                <option>测试地点1</option>
+                <option>测试地点2</option>
+              </select>
+            </div>
+    </div></div>
+          
+      </li>
+           <li>
+        <div class="item-content">
+          <div class="item-inner">
+            <div class="item-title label">存放位置2</div>
+            <div class="item-input">
+     		<select>
+                <option>测试地点1</option>
+                <option>测试地点2</option>
+              </select>
+            </div>
+    </div></div>
+          
+      </li>
+           <li>
+        <div class="item-content">
+          <div class="item-inner">
+            <div class="item-title label">存放位置3</div>
+            <div class="item-input">
+     		<select>
+                <option>测试地点1</option>
+                <option>测试地点2</option>
+              </select>
+            </div>
+    </div></div>
+          
+      </li>
+      </ul>
+      </div>
+     <div class="btn-bottom" hidden="true">
+  <a href="#" class="button button-big button-fill button-success">提交</a>
+  </div>
+  
+  <div class="list-table">
+  <table class="table table-striped">
+  <thead>
+  <tr><th>物资编码</th><th>物资名称</th><th>数量</th></tr>
+  </thead>
+<tbody>
+  <tr><td>200010022223</td><td>复印纸</td><td>3</td></tr>
+  <tr><td>200010022113</td><td>笔记本</td><td>3</td></tr>
+  <tr><td>200010022113</td><td>签字笔</td><td>3</td></tr>
+  </tbody>
+  </table>
+  </div> 
+    </div>
+   </div> 
+    <script type='text/javascript' src="js/zepto.js" charset='utf-8'></script>
+    <script type='text/javascript' src="js/sm.js" charset='utf-8'></script>
+    <!--日期时间选择-->
+    <script>
+	  $("#datetime-picker").datetimePicker({
+	    value: ['2017', '04', '16', '9', '34']
+	  });
+	</script>
+	
+	<script type='text/javascript'>
+	
+		function getJson(){
+			/* $.ajax({
+			    type : "get",
+			    url:"http://192.168.3.115:8080/MCS_OPEN/demo/getNews.json",
+			    async : false,
+			    data: {},
+			    dataType:'json',
+			    success: function(result){
+		   			 alert(result.msg);
+		   		 },
+		   		error: function(XMLHttpRequest, textStatus, errorThrown) {
+	                alert(XMLHttpRequest.status);
+	                alert(XMLHttpRequest.readyState);
+	                alert(textStatus);
+	            },
+			    
+			}); */
+			$.ajax({
+			    type : "post",
+			    url:"http://192.168.3.115:8080/MCS_OPEN/back/checkUser",
+			    async : false,
+			    //data: {username:$("#username").val(), password:$("#password").val()},
+			    data: {username:"admin", password:"MTIzNDU2"},
+			    dataType:'json',
+			    success: function(result){
+			   		 alert(result.info);
+		   		 },
+		   		error: function(XMLHttpRequest, textStatus, errorThrown) {
+	                alert(XMLHttpRequest.status);
+	            },
+			    
+			});
+		}
+		
+	</script>
+
+    
+	</body>
+</html>

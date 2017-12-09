@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>UTL物联通资产系统</title>
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="stylesheet" href="css/sm.css">
+<link rel="stylesheet" href="iconfont/iconfont.css">
+<link href="css/main.css" rel="stylesheet">
+<link href="css/demos.css" rel="stylesheet">
+
+</head>
+<body class="">
+	<div class="page-group ">
+		<div class="page body-login" id="page-modal">
+		   <div class="content login">
+		<div class="div-logo">
+	    <img src="img/logo.png">
+	    </div>
+	       <div class="list-block media-list inset">
+	           <ul>
+	               <li  class="item-content">
+	                   <div class="item-media"><i class="icon iconfont icon-denglu font-color12 font-18"></i></div>
+	                        <div class="item-inner2">
+	                             <input id="userName" type="text" placeholder="用户名" style="border-width: 0;"/>
+	                       </div>
+	               </li>
+	               <li  class="item-content">
+	                   <div class="item-media"><i class="icon iconfont icon-denglu1 font-color12 font-18"></i></div>
+	                   <div class="item-inner2">
+	    					<input id="password" type="password" placeholder="密码" style="border-width: 0;"/>
+	                   </div>
+	               </li>
+	           </ul>
+	       </div>
+	       <div class="content-block">
+	           <a class="button button-big button-confirm button-fill" onclick="login()">登录</a>
+	           	<!-- 弹出层 -->
+				<div style="background: #ffffff;display:none">
+				    <p><a class="alert-text-title" >登录失败的alert</a></p>
+				</div>
+				<!-- 弹出层 -->
+				<div style="background: #ffffff;display:none">
+				    <p><a class="alert-error-title" >登录失败的alert</a></p>
+				</div>
+			</div>
+	       <div class="list-login content-padded">
+	           <ul>
+	               <li class="item-content item-link">
+	                   <div class="item-inner2">
+	                       <div class="item-title">
+	                           <a class="iconfont icon-ic_fuwuqidenglu pull-left" href="ServerSettings.html" external>
+	                           设置服务器地址</a></div>
+	                       <div class="item-after"><a class="iconfont icon-kefudianhua" href="CustomerService.html" >
+	                           联系客服</a></div>
+	                   </div>
+	                   </li>
+	              </ul>
+	           </div>
+			</div>
+	    </div>
+	</div>
+
+<script type='text/javascript' src="js/zepto.js" charset='utf-8'></script>
+<script type='text/javascript' src="js/config.js" charset='utf-8'></script>
+<script type='text/javascript' src="js/base64.js" charset='utf-8'></script>
+<script type='text/javascript' src="js/sm.js" charset='utf-8'></script>
+<script type='text/javascript' src="js/demos.js" charset='utf-8'></script>
+<script type='text/javascript' src="js/asset.js" charset='utf-8'></script>
+<script type='text/javascript'>
+	
+    $(document).ready(function(){
+    	//本地存储
+		var userName = storage["userName"];
+	    var password =storage["password"];
+	    
+	    if(userName&&password){
+	    	$("#userName").val(userName); 
+	    	$("#password").val(password); 
+	    } 
+    });
+    
+    //登录
+   	function login(){
+
+	    var userNameText =$("#userName").val(); 
+	    var passwordText = $("#password").val(); 
+	    
+	    if(!serverAdd){
+	    	$.alert('请设置服务器地址!');
+	    	return;
+	    }
+	    if(!userNameText){
+	    	$(".alert-text-title").click();//引用弹出层
+	    	return;
+	    }
+	    if(!passwordText){
+	    	$(".alert-text-title").click();//引用弹出层
+	    	return;
+	    }
+   		var user = {userName:userNameText, password:encode64(strUnicode2Ansi(passwordText))};
+   		$.ajax({
+		    type : "POST",
+		   	url:serverUrl,
+		   //url:"http://192.168.3.93/api/AppService.aspx",
+		    headers:{"method":"login"},
+		    //async : false,
+		    timeout : 1000, //超时时间设置，单位毫秒
+		    data: JSON.stringify(user),
+		    dataType:'json',
+		    success: function(result){
+		   		// alert(result.userId+'&&'+result.companyId+'&&'+result.deptId+'&&'+result.userNo+'&&'+result.userName+'&&'+result.EId+'&&'+result.WId+'&&'+result.CId);
+		   		if(result){
+		   			if(result.retCode==0){
+		   				
+				   		storage["userName"] = userNameText;
+				   	    storage["password"]=passwordText; 
+					   	 
+					   	 //接口常用数据记录本地
+					   	storage["userId"]=result.userId; 
+					   	storage["companyId"]=result.companyId; 
+					   	storage["deptId"]=result.deptId; 
+					   	storage["nikeName"]=result.nikeName; 
+					   	storage["EId"]=result.EId; 
+					   	storage["WId"]=result.WId; 
+					   	storage["CId"]=result.CId; 
+					   	
+						self.location='Index.html'; 
+						//setTimeout("javascript:location.href='Index.html'", 5000); 
+			   		}else{
+			   			$(".alert-text-title").click();//引用弹出层
+			   		}
+		   		}else{
+		   		  $.alert('网络错误,请重新设置服务器!');
+		   		}
+	   		 },
+	   		error: function(XMLHttpRequest, textStatus, errorThrown) {
+                console.log(XMLHttpRequest.status);
+                //$(".alert-error-title").click();//引用弹出层
+                $.alert('网络错误,或请重新设置服务器!');
+            },
+		}); 
+   	}
+</script>
+</body>
+</html>

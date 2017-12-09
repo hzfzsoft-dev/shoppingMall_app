@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>UTL物联通资产系统</title>
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+<link rel="shortcut icon" href="/favicon.ico">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+<link rel="stylesheet" href="css/sm.css">
+<link rel="stylesheet" href="iconfont/iconfont.css">
+<link href="css/main.css" rel="stylesheet">
+      
+<script type='text/javascript' src="js/zepto.js" charset='utf-8'></script>
+<script type='text/javascript' src="js/config.js" charset='utf-8'></script>
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+
+</head>
+<body style="padding-bottom: 20px">
+    <div class="page-group">
+        <div class="page" id="FixedAssetRegister">
+      <header class="bar bar-nav bar-nav-blue mousemove" >
+          <a class="icon iconfont icon-jiantou-copy pull-left back" href="#" data-transition='slide-out'>
+    </a>
+    <h1 class="title">登记</h1>
+          <button class="button button-white pull-right" id="btnSave">
+              		保存
+          </button>
+		 </header>
+            <div class="content">
+
+                <div class="list-block ul-ptb" >
+                    <ul>
+                       <!--  <li>
+                            <div class="item-content">
+                                <div class="item-inner">
+                                    <div class="item-title label">系统资产编码</div>
+                                    <div class="item-input">
+                                        <input type="text" value="1237829076512" disabled/>
+                                    </div>
+                                      <div class="item-media">
+                                       <a href="#" class="btniconfont"><i class="icon iconfont icon-saoyisao4 icon-saoma"></i></a>
+                                       </div>
+
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item-content">
+                                <div class="item-inner">
+                                    <div class="item-title label">固定资产卡片编码</div>
+                                    <div class="item-input">
+                                        <input type="text" value="" disabled/>
+                                    </div>
+                                </div>
+                            </div>
+                        </li> -->
+                        <li>
+                            <div class="item-content">
+                                <div class="item-inner">
+                                    <div class="item-title label">资产名称</div>
+                                    <div class="item-input">
+                                        <input type="text" value="" id="assetName"/>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item-content">
+                                <div class="item-inner">
+                                    <div class="item-title label">资产大类</div>
+                                    <div class="item-input">
+                                        <input type="text" id="category-picker-max" value="----" readOnly/>
+                                       <!--  <input type="hidden" id="category-picker-max-hidden" value="" /> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item-content">
+                                <div class="item-inner">
+                                    <div class="item-title label">资产中类</div>
+                                    <div class="item-input">
+                                        <input type="text" id="category-picker-mid" value="----" readOnly/>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item-content">
+                                <div class="item-inner">
+                                    <div class="item-title label">资产小类</div>
+                                    <div class="item-input">
+                                        <input type="text" id="category-picker-sub" value="----" readOnly/>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item-content">
+                                <div class="item-inner">
+                                    <div class="item-title label">数量</div>
+                                    <div class="item-input">
+                                        <input type="number"  value=""  id="num"/>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item-content">
+                                <div class="item-inner">
+                                    <div class="item-title label">购买价格</div>
+                                    <div class="item-input">
+                                        <input type="number" value="" id="price"/>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="item-content">
+                                <div class="item-inner">
+                                    <div class="item-title label">报修维护电话</div>
+                                    <div class="item-input">
+                                        <input type="number"  id="mTelephone"/>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item-content">
+                                <div class="item-inner">
+                                    <div class="item-title label">制造商</div>
+                                    <div class="item-input">
+                                        <input type="text" id="manufacturer" />
+                                    </div>
+
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item-content">
+                                <div class="item-inner">
+                                    <div class="item-title label">提供商</div>
+                                    <div class="item-input">
+                                        <input type="text" value="" id="rentProvider"/>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item-content">
+                                <div class="item-inner">
+                                    <div class="item-title label">存放城市</div>
+                                    <div class="item-input">
+                                        <input type="text" value="" id="city"/>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item-content">
+                                <div class="item-inner">
+                                    <div class="item-title label">一级存放点</div>
+                                    <div class="item-input">
+                                        <input type="text" id="picker-site-getplace" value="----" readOnly/>
+                                    </div>
+                                </div>
+                             </div>
+                        </li>
+                        <li>
+                            <div class="item-content">
+                                <div class="item-inner">
+                                    <div class="item-title label">二级存放点</div>
+                                    <div class="item-input">
+                                        <input type="text" id="picker-site-getplace2" value="----" readOnly/>
+                                    </div>
+                                </div>
+                             </div>
+                        </li>
+                        <li>
+                            <div class="item-content">
+                                <div class="item-inner">
+                                    <div class="item-title label">三级存放点</div>
+                                    <div class="item-input">
+                                        <input type="text" id="picker-site-getplace3" value="----" readOnly/>
+                                    </div>
+                                </div>
+                             </div>
+                        </li>
+
+                        <li>
+                            <div class="item-content">
+                                <div class="item-inner">
+                                    <div class="item-title label">照片</div>
+                                    <div class="item-input addphoto create-actions">
+                                       <!-- <a><i class="icon iconfont icon-xiangji1 create-actions"></i>添加照片</a>-->
+                                       <a> <img class="imgbox" id="getImage" src="img/addphoto.png" /></a>
+                                       <input type="hidden" id="fileName"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item-content">
+                                <div class="item-inner">
+                                    <div class="item-title label">备注</div>
+                                    <div class="item-input">
+                                        <textarea class="form-control" id="inputmark" cols="10" rows="4"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </li>
+                    </ul>
+                </div>
+
+                    <div class="content-block" >
+                        <div class="buttons-row">
+                            <a href="#tab1" class="tab-link active button" id="purchaseTab" >购置</a>
+                            <a href="#tab2" class="tab-link button">租赁</a>
+
+                        </div>
+                    </div>
+                    <div class="tabs bgwhite">
+                        <div id="tab1" class="tab active">
+                            <div class="content-block">
+                                <div class="list-block ul-ptb" >
+                                    <ul id="buy">
+                                        <li>
+                                            <div class="item-content">
+                                                <div class="item-inner">
+                                                    <div class="item-title label">购置日期</div>
+                                                    <div class="item-input">
+                                                        <input type="date"  value="2017-05-10" id="purchaseDate">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </li>
+                                        <li>
+                                            <div class="item-content">
+                                                <div class="item-inner">
+                                                    <div class="item-title label">折旧年限</div>
+                                                    <div class="item-input">
+                                                        <input type="text" value="" id="depreciation"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </li>
+                                        <li>
+                                            <div class="item-content">
+                                                <div class="item-inner">
+                                                    <div class="item-title label">保修期</div>
+                                                    <div class="item-input">
+                                                        <input type="text" value="" id="warranty"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </li>
+                                        <li>
+                                            <div class="item-content">
+                                                <div class="item-inner">
+                                                    <div class="item-title label">发票号</div>
+                                                    <div class="item-input">
+                                                        <input type="text" value="" id="invoice"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </li>
+
+                                        <li>
+                                            <div class="item-content">
+                                                <div class="item-inner">
+                                                    <div class="item-title label">发票日期</div>
+                                                    <div class="item-input">
+                                                        <input type="date"  value="2017-05-10" id="invoiceDate">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </li>
+
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div id="tab2" class="tab">
+                            <div class="content-block">
+                                <div class="list-block ul-ptb" >
+                                <ul id="lease">
+
+                                    <li>
+                                        <div class="item-content">
+                                            <div class="item-inner">
+                                                <div class="item-title label">起租日期</div>
+                                                <div class="item-input">
+                                                    <input type="date"  value="2017-05-10" id="rentBegDate">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </li>
+                                    <li>
+                                        <div class="item-content">
+                                            <div class="item-inner">
+                                                <div class="item-title label">止租日期</div>
+                                                <div class="item-input">
+                                                    <input type="date"  value="2019-04-30" id="rentEndDate">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </li>
+
+                                </ul>
+                                    </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                <div class="list-block ul-ptb" hidden >
+                    <ul>
+                        <li>
+                            <div class="item-content">
+                                <div class="item-inner">
+                                    <div class="item-title label">使用人</div>
+                                    <div class="item-input"></div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item-content">
+                                <div class="item-inner">
+                                    <div class="item-title label">参考编号</div>
+                                    <div class="item-input"> <input type="text" /></div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item-content">
+                                <div class="item-inner">
+                                    <div class="item-title label">操作系统</div>
+                                    <div class="item-input"> <input type="text" /></div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item-content">
+                                <div class="item-inner">
+                                    <div class="item-title label">CPU</div>
+                                    <div class="item-input"> <input type="text" /></div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item-content">
+                                <div class="item-inner">
+                                    <div class="item-title label">内存</div>
+                                    <div class="item-input"> <input type="text" /></div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item-content">
+                                <div class="item-inner">
+                                    <div class="item-title label">硬盘</div>
+                                    <div class="item-input"> <input type="text" /></div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item-content">
+                                <div class="item-inner">
+                                    <div class="item-title label">驱动器</div>
+                                    <div class="item-input"> <input type="text" /></div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item-content">
+                                <div class="item-inner">
+                                    <div class="item-title label">显示卡</div>
+                                    <div class="item-input"> <input type="text" /></div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item-content">
+                                <div class="item-inner">
+                                    <div class="item-title label">部门</div>
+                                    <div class="item-input"> <input type="text" /></div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+</div>
+<script type='text/javascript' src="js/sm.js" charset='utf-8'></script>
+<script type="text/javascript" src="js/category.js" charset="utf-8"></script>
+<script type="text/javascript" src="js/demos.js" charset="utf-8"></script>
+<script type='text/javascript' src="js/asset.js" charset='utf-8'></script>
+
+<script type='text/javascript'>
+
+   	var assetMax=[];
+   	var assetTypeNames=[];//大类
+   	var assetTypeIds=[];
+    
+   	var assetMid=[];
+   	var assetMidTypeNames=[];//中类
+   	var assetMidTypeIds=[];
+   	
+   	var assetSub=[];
+   	var assetSubTypeNames=[];//小类
+   	var assetSubTypeIds=[];
+   	
+   	var maxValue;
+   	var midValue;
+   	var subValue;
+   	
+   	var placeMax=[];
+   	var placeNames=[];//一级存放
+   	var placeIds=[];
+    
+   	var placeMid=[];
+   	var placeMidNames=[];//二级存放
+   	var placeMidIds=[];
+   	
+   	var placeSub=[];
+   	var placeSubNames=[];//三级存放
+   	var placeSubIds=[];
+   	
+   	var maxPlaceValue;
+   	var midPlaceValue;
+   	var subPlaceValue;
+    
+	$(document).ready(function(){
+	 	
+		//资产大类
+		//$("#category-picker-max").click(function(){
+    	$.ajax({
+		    type : "POST",
+		   	url:serverUrl,
+		    headers:{"method":"getAssetType","companyId":companyId,"deptId":deptId,"userId":userId,"EId":EId,"WId":WId,"CId":CId},
+		    data: {},
+		    dataType:'json',
+		    success: function(result){
+		   		
+		    	if(result.retCode==0){
+		   			var str=result.assetTypes;
+		   			var json= JSON.parse(str);//使用JSON.parse()方法必须匹配标准的json数据格式,例如var str='{"assetTypes": [{"assetTypeId": "06","assetTypeName": "无形资产"},{"assetTypeId": "02",	"assetTypeName": "办公设备"},{"assetTypeId": "09",	"assetTypeName": "系统软件"}],"retCode": 0,"retInfo": ""}';
+					var jsonArr=json.assetTypes;
+					assetMax[0]="----";//设置下拉选择的默认值
+		   			for(var i=0;i<jsonArr.length;i++){
+		   				assetTypeNames[i]=jsonArr[i].assetTypeName;
+		   			}
+		   			for(var i=0;i<jsonArr.length;i++){
+		   				assetTypeIds[i]=jsonArr[i].assetTypeId;
+		   			}
+		   			for(var i=0;i<jsonArr.length;i++){
+		   				assetMax[i+1]=jsonArr[i].assetTypeName+"-"+jsonArr[i].assetTypeId;
+		   			}
+		   		}else{
+		   			assetTypeNames=[];
+		   			assetTypeIds=[];
+		   			assetMax=[];
+		   		}
+	   		 },
+	   		error: function(XMLHttpRequest, textStatus, errorThrown) {
+	            console.log(XMLHttpRequest.status);
+	            $.alert('网络错误,请稍后再试!');
+       		},
+		}); 
+    	
+		//一级存放
+    	$.ajax({
+		    type : "POST",
+		   	url:serverUrl,
+		    headers:{"method":"getPlace","companyId":companyId,"deptId":deptId,"userId":userId,"EId":EId,"WId":WId,"CId":CId},
+		    data: {},
+		    dataType:'json',
+		    success: function(result){
+		   		
+		    	if(result.retCode==0){
+		    		var jsonArr=JSON.parse(result.placeInfo).placeInfo;
+					placeMax[0]="----";//设置下拉选择的默认值
+		   			for(var i=0;i<jsonArr.length;i++){
+		   				placeNames[i]=jsonArr[i].placeName;
+		   			}
+		   			for(var i=0;i<jsonArr.length;i++){
+		   				placeIds[i]=jsonArr[i].placeId;
+		   			}
+		   			for(var i=0;i<jsonArr.length;i++){
+		   				placeMax[i+1]=jsonArr[i].placeName+"-"+jsonArr[i].placeId;
+		   			}
+		   		}else{
+		   			placeNames=[];
+		   			placeIds=[];
+		   			placeMax=[];
+		   		}
+	   		 },
+	   		error: function(XMLHttpRequest, textStatus, errorThrown) {
+	            console.log(XMLHttpRequest.status);
+	            $.alert('网络错误,请稍后再试!');
+       		},
+		}); 
+    });
+   	
+	//点击大类
+	$("#category-picker-max").click(function(){
+		$("#category-picker-mid").val("----");
+		$("#category-picker-sub").val("----");
+	});
+	
+   	//点击中类
+	$("#category-picker-mid").on("click", function(){
+		maxValue=$("#category-picker-max").val();
+		$("#category-picker-sub").val("----");
+		if(maxValue=="----"){
+			$.alert('请先选择大类!');
+			$("#category-picker-max").val("----");
+			$("#category-picker-mid").val("----");
+// 			assetMid=[];
+// 			assetSub=[];
+		}else{
+			var maxArr=splitByBar(maxValue);
+			var assetTypeId=maxArr[1];
+			
+			$.ajax({
+			    type : "POST",
+			    url:serverUrl,
+			    headers:{"method":"getAssetMidType","companyId":companyId,"deptId":deptId,"userId":userId,"EId":EId,"WId":WId,"CId":CId},
+			    async : false,
+			    data: JSON.stringify({assetTypeId:assetTypeId}),
+			    dataType:'json',
+		   		success: function(result){
+			   		
+			    	if(result.retCode==0){
+			   			var str=result.assetMidTypes;
+			   			var json= JSON.parse(str);
+						var jsonArr=json.assetMidTypes;
+	
+						assetMid[0]="----";//设置下拉选择的默认值
+			   			for(var i=0;i<jsonArr.length;i++){
+			   				assetMidTypeNames[i]=jsonArr[i].assetMidTypeName;
+			   			}
+			   			for(var i=0;i<jsonArr.length;i++){
+			   				assetMidTypeIds[i]=jsonArr[i].assetMidTypeId;
+			   			}
+			   			for(var i=0;i<jsonArr.length;i++){
+			   				assetMid[i+1]=jsonArr[i].assetMidTypeName+"-"+jsonArr[i].assetMidTypeId;
+			   			}
+			   		}else{
+			   			assetMidTypeNames=[];
+			   			assetMidTypeIds=[];
+			   			assetMid=[];
+			   		}
+		   		 },
+		   		error: function(XMLHttpRequest, textStatus, errorThrown) {
+		            console.log(XMLHttpRequest.status);
+		            $.alert('网络错误,请稍后再试!');
+	       		},
+			}); 
+		}
+	});
+   	
+   	//点击小类
+	$("#category-picker-sub").click(function(){
+		midValue=$("#category-picker-mid").val();
+		if(midValue=="----"){
+			$.alert('请先选择中类!');
+			$("#category-picker-mid").val("----");
+			$("#category-picker-sub").val("----");
+// 			assetMid=[];
+// 			assetSub=[];
+		}else{
+			var midArr=splitByBar(midValue);
+			var assetMidTypeId=midArr[1];
+			
+			$.ajax({
+			    type : "POST",
+			    url:serverUrl,
+			    headers:{"method":"getAssetSubType","companyId":companyId,"deptId":deptId,"userId":userId,"EId":EId,"WId":WId,"CId":CId},
+			    async : false,
+			    data: JSON.stringify({assetMidTypeId:assetMidTypeId}),
+			    dataType:'json',
+		   		success: function(result){
+			   		
+			    	if(result.retCode==0){
+			   			var str=result.assetSubTypes;
+			   			var json= JSON.parse(str);
+						var jsonArr=json.assetSubTypes;
+						assetSub[0]="----";//设置下来选择的默认值
+			   			for(var i=0;i<jsonArr.length;i++){
+			   				assetSubTypeNames[i]=jsonArr[i].assetSubTypeName;
+			   			}
+			   			for(var i=0;i<jsonArr.length;i++){
+			   				assetSubTypeIds[i]=jsonArr[i].assetSubTypeId;
+			   			}
+			   			for(var i=0;i<jsonArr.length;i++){
+			   				assetSub[i+1]=jsonArr[i].assetSubTypeName+"-"+jsonArr[i].assetSubTypeId;
+			   			}
+			   		}else{
+			   			assetSubTypeNames=[];
+			   			assetSubTypeIds=[];
+			   			assetSub=[];
+			   		}
+		   		 },
+		   		error: function(XMLHttpRequest, textStatus, errorThrown) {
+		            console.log(XMLHttpRequest.status);
+		            $.alert('网络错误,请稍后再试!');
+	       		},
+			}); 
+		}
+	});
+ 	
+	//大类选择
+    $("#category-picker-max").picker({
+
+    	  inputReadOnly:true,
+    	  toolbarTemplate: '<header class="bar bar-nav">\<button class="button button-link pull-left"></button>\<button class="button button-link pull-right close-picker">确定</button>\<h1 class="title">大类</h1>\</header>',
+    	  cols: [
+    	    {
+    	      textAlign: 'center',
+    	      values: assetMax,
+    	    }
+    	  ],
+    	  onClose:function(){
+    		  maxValue=$("#category-picker-max").val();
+    	  }
+    });
+	
+	//中类选择 
+    $("#category-picker-mid").picker({
+    	  inputReadOnly:true,
+    	  toolbarTemplate: '<header class="bar bar-nav">\<button class="button button-link pull-left"></button>\<button class="button button-link pull-right close-picker">确定</button>\<h1 class="title">中类</h1>\</header>',
+    	  cols: [
+    	    {
+    	      textAlign: 'center',
+    	      values: assetMid,
+    	    }
+    	  ],
+    	  onClose:function(){
+    		  midValue=  $("#category-picker-mid").val();
+    		  if(midValue=="----"&&maxValue!="----"&&maxValue){
+    			  $.alert('请选择中类!');
+    		  }
+    	  }
+    });
+	
+  	//小类选择
+    $("#category-picker-sub").picker({
+    	  inputReadOnly:true,
+    	  toolbarTemplate: '<header class="bar bar-nav">\<button class="button button-link pull-left"></button>\<button class="button button-link pull-right close-picker">确定</button>\<h1 class="title">小类</h1>\</header>',
+    	  cols: [
+    	    {
+    	      textAlign: 'center',
+    	      values: assetSub,
+    	    }
+    	  ],
+    	  onClose:function(){
+    		  subValue=  $("#category-picker-sub").val();
+    		  if(subValue=="----"&&maxValue!="----"&&midValue!="----"){
+    			  $.alert('请选择小类!');
+    		  }
+    	  }
+    }); 
+</script>
+<script>
+	//点击一级存放点
+	$("#picker-site-getplace").click(function(){
+		$("#picker-site-getplace2").val("----");
+		$("#picker-site-getplace3").val("----");
+	});
+	
+	//点击二级存放点
+	$("#picker-site-getplace2").on("click", function(){
+		maxPlaceValue=$("#picker-site-getplace").val();
+		$("#picker-site-getplace3").val("----");
+		if(maxPlaceValue=="----"){
+			$.alert('请先选择一级存放点!');
+			$("#picker-site-getplace").val("----");
+			$("#picker-site-getplace2").val("----");
+		}else{
+			var maxArr=splitByBar(maxPlaceValue);
+			var placeId=maxArr[1];
+			
+			$.ajax({
+			    type : "POST",
+			    url:serverUrl,
+			    headers:{"method":"getPlace2","companyId":companyId,"deptId":deptId,"userId":userId,"EId":EId,"WId":WId,"CId":CId},
+			    async : false,
+			    data: JSON.stringify({placeId:placeId}),
+			    dataType:'json',
+		   		success: function(result){
+			   		
+			    	if(result.retCode==0){
+						var jsonArr=JSON.parse(result.placeInfo).placeInfo;
+						placeMid[0]="----";
+			   			for(var i=0;i<jsonArr.length;i++){
+			   				placeMidNames[i]=jsonArr[i].placeName;
+			   			}
+			   			for(var i=0;i<jsonArr.length;i++){
+			   				placeMidIds[i]=jsonArr[i].placeId;
+			   			}
+			   			for(var i=0;i<jsonArr.length;i++){
+			   				placeMid[i+1]=jsonArr[i].placeName+"-"+jsonArr[i].placeId;
+			   			}
+			   		}else{
+			   			placeMidNames=[];
+			   			placeMidIds=[];
+			   			placeMid=[];
+			   		}
+		   		 },
+		   		error: function(XMLHttpRequest, textStatus, errorThrown) {
+		            console.log(XMLHttpRequest.status);
+		            $.alert('网络错误,请稍后再试!');
+	       		},
+			}); 
+		}
+	});
+		
+	//点击三级存放点
+	$("#picker-site-getplace3").click(function(){
+		midPlaceValue=$("#picker-site-getplace2").val();
+		if(midPlaceValue=="----"){
+			$.alert('请先选择二级存放点!');
+			$("#picker-site-getplace2").val("----");
+			$("#picker-site-getplace3").val("----");
+		}else{
+			var midArr=splitByBar(midPlaceValue);
+			var placeMidId=midArr[1];
+			
+			$.ajax({
+			    type : "POST",
+			    url:serverUrl,
+			    headers:{"method":"getPlace3","companyId":companyId,"deptId":deptId,"userId":userId,"EId":EId,"WId":WId,"CId":CId},
+			    async : false,
+			    data: JSON.stringify({placeId:placeMidId}),
+			    dataType:'json',
+		   		success: function(result){
+			   		
+			    	if(result.retCode==0){
+						var jsonArr=JSON.parse(result.placeInfo).placeInfo;
+						placeSub[0]="----";//设置下来选择的默认值
+			   			for(var i=0;i<jsonArr.length;i++){
+			   				placeSubNames[i]=jsonArr[i].placeName;
+			   			}
+			   			for(var i=0;i<jsonArr.length;i++){
+			   				placeSubIds[i]=jsonArr[i].placeId;
+			   			}
+			   			for(var i=0;i<jsonArr.length;i++){
+			   				placeSub[i+1]=jsonArr[i].placeName+"-"+jsonArr[i].placeId;
+			   			}
+			   		}else{
+			   			placeSubNames=[];
+			   			placeSubIds=[];
+			   			placeSub=[];
+			   		}
+		   		 },
+		   		error: function(XMLHttpRequest, textStatus, errorThrown) {
+		            console.log(XMLHttpRequest.status);
+		            $.alert('网络错误,请稍后再试!');
+	       		},
+			}); 
+		}
+	});
+
+	//一级存放选择
+	$("#picker-site-getplace").picker({
+	
+		  inputReadOnly:true,
+		  toolbarTemplate: '<header class="bar bar-nav">\<button class="button button-link pull-left"></button>\<button class="button button-link pull-right close-picker">确定</button>\<h1 class="title">一级存放点</h1>\</header>',
+		  cols: [
+		    {
+		      textAlign: 'center',
+		      values: placeMax,
+		    }
+		  ],
+		  onClose:function(){
+			  maxPlaceValue=$("#picker-site-getplace").val();
+		  }
+	});
+	
+	//二级选择 
+	$("#picker-site-getplace2").picker({
+		  inputReadOnly:true,
+		  toolbarTemplate: '<header class="bar bar-nav">\<button class="button button-link pull-left"></button>\<button class="button button-link pull-right close-picker">确定</button>\<h1 class="title">二级存放点</h1>\</header>',
+		  cols: [
+		    {
+		      textAlign: 'center',
+		      values: placeMid,
+		    }
+		  ],
+		  onClose:function(){
+			  midPlaceValue=$("#picker-site-getplace2").val();
+			  if(midPlaceValue=="----"&&maxPlaceValue!="----"&&maxPlaceValue){
+				  $.alert('请选择二级存放点!');
+			  }
+		  }
+	});
+	
+	//三级存放选择
+	$("#picker-site-getplace3").picker({
+		  inputReadOnly:true,
+		  toolbarTemplate: '<header class="bar bar-nav">\<button class="button button-link pull-left"></button>\<button class="button button-link pull-right close-picker">确定</button>\<h1 class="title">三级存放点</h1>\</header>',
+		  cols: [
+		    {
+		      textAlign: 'center',
+		      values: placeSub,
+		    }
+		  ],
+		  onClose:function(){
+			  subPlaceValue=$("#picker-site-getplace3").val();
+			  if(subPlaceValue=="----"&&maxPlaceValue!="----"&&midPlaceValue!="----"){
+				  $.alert('请选择三级存放点!');
+			  }
+		  }
+	}); 
+</script>
+
+<script>
+      $(document).on('click','.create-actions', function () {
+          var buttons1 = [
+              {
+                  text: '请选择',
+                  label: true
+              },
+              {
+                  text: '拍照',
+                  bold: true,
+                  color: 'default',
+                  onClick: function() {
+                	  navigator.camera.getPicture(onLoadImageSuccess, onLoadImageFail, {destinationType: Camera.DestinationType.DATA_URL});
+                	  /* capturePhotoUrl(function(r){
+							alert(r.response);                			
+                			
+                		}); */
+                  }
+              },
+              {
+                  text: '从手机相册选择',
+                  onClick: function() {
+                		//相册获取照片
+                      navigator.camera.getPicture(onPhotoURISuccess,
+                        function(error){console.log("照片获取失败！");  $.alert('图片获取失败!');}, //quality : 图像的质量，范围是[0,100]
+                        { quality: 50, destinationType: Camera.DestinationType.FILE_URI, sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY });
+                  }
+              }
+          ];
+          var buttons2 = [
+              {
+                  text: '取消',
+                  bg: 'danger'
+              }
+          ];
+          var groups = [buttons1, buttons2];
+          $.actions(groups);
+      });
+</script>
+<!-- <script>
+function capturePhotoUrl(onSuccessCallback) {
+    navigator.camera.getPicture(
+    	function(picUrl){
+    		uploadPhoto(picUrl,onSuccessCallback);
+    	},
+    	onCapturePhotoUrlError,
+        {	
+    		quality: 80
+			,sourceType: Camera.PictureSourceType.CAMERA
+            ,destinationType: Camera.DestinationType.FILE_URI
+            ,encodingType:Camera.EncodingType.JPEG
+            ,mediaType:Camera.MediaType.PICTURE
+            ,correctOrientation:true
+            ,targetWidth:720
+            ,targetHeight:1280
+         }
+    );
+}
+
+function onCapturePhotoUrlError(data){
+	if(data == "Camera cancelled."){
+		return;
+	}
+	//popupAlart("调用图片出错，错误信息: " + data);
+	  $.alert("调用图片出错，错误信息: " + data);
+}
+
+function uploadPhoto(picUrl,uploadPhotoSuccess){
+    var options = new FileUploadOptions();
+    options.fileKey="file";
+    options.fileName=picUrl.substr(picUrl.lastIndexOf('/')+1);
+    options.mimeType="image/jpeg";
+    options.chunkedMode = false; 
+    options.params = {};
+    var ft = new FileTransfer();
+    ft.upload(picUrl, APIURL.fileUploadUrl, uploadPhotoSuccess, uploadPhotoFail, options);
+}
+
+function uploadPhotoFail(error) {
+	/*
+	 *FileTransferError.FILE_NOT_FOUND_ERR：1 文件未找到错误。
+	 *FileTransferError.INVALID_URL_ERR：2  无效的URL错误。
+	 *FileTransferError.CONNECTION_ERR：3  连接错误。
+	 *FileTransferError.ABORT_ERR = 4;  程序异常
+	*/
+    var errorcode=error.code;
+    var errstr="";
+    switch (errorcode)
+    {
+        case 1:
+        {
+           errstr="源文件路径异常，请重新选择或者拍照上传！";
+           break;
+        }
+        case 2:
+        {
+            errstr="目标地址无效,请重试！";
+            break;
+        }
+        case 3:
+        {
+            errstr="您手机或者后台服务器网络异常,请重新上传！";
+            break;
+        }
+        default :
+        {
+            errstr="程序出错";
+            break;
+        }
+    }
+    if("" != errstr){
+    	  $.alert(errstr);
+    }
+}
+</script> -->
+<!--拍照与相册  -->
+<script type="text/javascript">
+    	//拍照成功后回调
+    	function onLoadImageSuccess(imageURI) {
+    	    //这里的图片经过了base64编码
+    	    var src = "data:image/jpeg;base64," + imageURI;
+    	    $("#getImage").attr("src", src);
+    	    
+    	    upload(src);//上传照片
+    	}
+    	//所有获取图片失败都回调此函数
+    	function onLoadImageFail(message) {
+    	    navigator.notification.alert("拍照失败，原因：" + message, null, "警告");
+    	}
+    	
+    	 //手机相册获取照片成功
+        function onPhotoURISuccess(imageURI) {
+            //打印出照片路径
+            console.log(imageURI);
+            //显示照片
+            $("#getImage").attr("src", imageURI);
+            upload(imageURI);//上传照片
+        }
+    
+</script>
+<script>
+	//上传照片
+	function upload(fileURL) {
+		
+		//上传成功
+		var success = function (result) {
+		    console.log("上传成功!  " +result);
+		   	//console.log(result.code);
+		}
+		
+		//上传失败
+		var fail = function (error) {
+		    //alert("上传失败! Code = " + error.code);
+			 $.alert('上传失败!');
+		}
+		
+		var fileName=guid()+".jpg"
+		$("#fileName").val(fileName); 
+		var options = new FileUploadOptions(); 
+		
+		options.headers = {"method":"fileUpload","fileName":fileName};//设置头信息
+		options.fileKey = "file";//文件参数选项
+		options.fileName = fileURL.substr(fileURL.lastIndexOf('/') + 1);
+		//options.mimeType = "image/jpeg";
+		
+		//上传参数
+		var params = {};
+		options.params = params;
+		
+		var ft = new FileTransfer();
+		//上传地址
+		var SERVER =serverUrl;
+		ft.upload(fileURL, encodeURI(SERVER), success, fail, options);
+
+	}
+</script>
+<script>
+	//登记保存
+	$("#btnSave").click(function(){
+		
+		var assetName=$("#assetName").val();
+		if(!assetName){
+			$.alert('请输入资产名称!');
+			return;
+		}
+		var picture=$("#fileName").val();
+		var assetTypeId=splitByBar($("#category-picker-max").val())[1];
+		var assetMidTypeId=splitByBar($("#category-picker-mid").val())[1];
+		var assetSubTypeId=splitByBar($("#category-picker-sub").val())[1];
+		if(!assetSubTypeId){
+			$.alert('请选择资产小类!');
+			return;
+		}
+		var Num=$("#num").val();
+		if(!isNum(Num)){
+			$.alert('请输入大于0的数量!');
+			return;
+		}
+		
+		var price=$("#price").val();
+		var rentProvider=$("#rentProvider").val();//提供商
+		var mTelephone=$("#mTelephone").val();
+		if(!isPhone(mTelephone)){
+			$.alert('请输入正确的电话号码!');
+			return;
+		}
+		
+		var manufacturer=$("#manufacturer").val();
+		var city=$("#city").val();
+		var placeId=splitByBar($("#picker-site-getplace3").val())[1];
+		if(!placeId){
+			$.alert('请选择三级存放点!');
+			return;
+		}
+		var note=$("#inputmark").val();
+		
+		var purchase;
+		var purchaseDate="";
+		var depreciation="";
+		var warranty="";
+		var invoice="";
+		var invoiceDate="";
+		
+		var rentBegDate="";
+		var rentEndDate="";
+		
+		var purchaseTab=$("#purchaseTab").attr('class');
+		if(purchaseTab=="tab-link active button"){
+			purchase=true;
+			purchaseDate=$("#purchaseDate").val();
+			depreciation=$("#depreciation").val();
+			if(!isNum(depreciation)){
+				$.alert('折旧年限请输入数字!');
+				return;
+			}
+			
+			warranty=$("#warranty").val();
+			invoice=$("#invoice").val();
+			invoiceDate=$("#invoiceDate").val();
+			
+		}else{
+			purchase=false;
+			depreciation=0;
+			rentBegDate=$("#rentBegDate").val();
+			rentEndDate=$("#rentEndDate").val();
+		}
+		
+		var asset = {Num:Num,picture:picture,assetName:assetName,assetTypeId:assetTypeId,assetMidTypeId:assetMidTypeId,assetSubTypeId:assetSubTypeId,assetSubTypeId:assetSubTypeId,price:price,rentProvider:rentProvider,mTelephone:mTelephone,manufacturer:manufacturer,city:city,placeId:placeId,note:note,purchase:purchase,purchaseDate:purchaseDate,depreciation:depreciation,warranty:warranty,invoice:invoice,invoiceDate:invoiceDate,rentBegDate:rentBegDate,rentEndDate:rentEndDate};
+		$.ajax({
+		    type : "POST",
+		    url:serverUrl,
+		    headers:{"method":"addAsset","companyId":companyId,"deptId":deptId,"userId":userId,"EId":EId,"WId":WId,"CId":CId},
+		    async : false,
+		    data: JSON.stringify(asset),
+		    dataType:'json',
+		    success: function(result){
+
+		    	if(result.retCode==0){
+		    		self.location='Index.html'; 
+		    	}else{
+		    		 $.alert('请稍后再试!');
+		    	}
+	   		 },
+	   		error: function(XMLHttpRequest, textStatus, errorThrown) {
+	            console.log(XMLHttpRequest.status);
+	            $.alert('网络错误,请稍后再试!');
+       		},
+		}); 
+			
+	});
+</script>
+
+</body>
+</html>

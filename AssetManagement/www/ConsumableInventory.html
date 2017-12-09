@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>UTL物联通资产系统</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="css/sm.css">
+    <link rel="stylesheet" href="iconfont/iconfont.css">
+     <link href="css/main.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="page-group">
+        <div class="page">
+      <header class="bar bar-nav bar-nav-blue mousemove" >
+          <a class="icon iconfont icon-jiantou-copy pull-left back" href="#" data-transition='slide-out'>
+    </a>
+          <div></div>
+    <h1 class="title">易耗品盘点</h1>
+          <a href="#" class="btniconfont"><i
+                  class="icon iconfont icon-saoyisao1 pull-right" onclick="onScanning()"></i></a>
+ </header>
+ <div class="content margin-b">
+     <div class="list-block ul-ptb m-b0" >
+         <ul>
+			<li id="place1Li">
+		           <div class="item-content">
+		               <div class="item-inner">
+		                   <div class="item-title label">一级存放点</div>
+		                   <div class="item-input">
+		                       <input type="text" id="picker-site-getplace" value="----" readOnly/>
+		
+		                   </div>
+		               </div>
+		           </div>
+		       </li>
+		       <li  id="place2Li">
+		           <div class="item-content">
+		               <div class="item-inner">
+		                   <div class="item-title label">二级存放点</div>
+		                   <div class="item-input">
+		                       <input type="text" id="picker-site-getplace2" value="----" readOnly/>
+		
+		                   </div>
+		               </div>
+		           </div>
+		       </li>
+		       <li  id="place3Li">
+		           <div class="item-content">
+		               <div class="item-inner">
+		                   <div class="item-title label">三级存放点</div>
+		                   <div class="item-input">
+		                       <input type="text" id="picker-site-getplace3" value="----" readOnly/>
+		
+		                   </div>
+		               </div>
+		           </div>
+		       </li>
+             <li>
+                 <div class="item-content">
+                     <div class="item-inner">
+                         <div class="item-title label">盘点单号</div>
+                         <div class="item-input">
+                             <input type="text" id="inventoryNumber" disabled />
+                         </div>
+
+                     </div>
+                 </div>
+             </li>
+             <li>
+                 <div class="item-content">
+                     <div class="item-inner">
+                         <div class="item-title label">易耗品编码</div>
+                         <div class="item-input">
+                             <div class="row">
+			                    <div class="col-75"> <input type="text" placeholder="必填" id="consumableId"/></div>
+			                    <div class="col-25"><a href="javascript:;" class="button button-big button-fill button-h" id="detail">详情</a></div>
+			                </div>
+                         </div>
+                     </div>
+                 </div>
+             </li>
+             <!--          <li>
+                     <div class="item-content">
+                       <div class="item-inner">
+                         <div class="item-title label">资产名称</div>
+                         <div class="item-input">
+                           <input type="text" placeholder="必填"/>
+                         </div>
+
+                  </div>
+                  </div>
+                   </li>
+                    <li>
+                     <div class="item-content">
+                       <div class="item-inner">
+                         <div class="item-title label">盘点时间</div>
+                         <div class="item-input">
+                           <input type="text" id='datetime-picker'/>
+                         </div>
+
+                  </div>
+                  </div>
+                   </li>-->
+
+
+         </ul>
+     </div>
+
+  <div class="list-table" id="inventoryList">
+  </div> 
+    </div>
+            <div class="bar bar-footer footer-h">
+                <div class="row">
+                    <div class="col-50"><a href="#" class="button button-big button-fill button-warning" id="btnSave">保存盘点单</a></div>
+                    <div class="col-50"><a href="#" class="button button-big button-fill button-success" id=btnFinish>完成盘点单</a></div>
+                </div>
+            </div>
+   </div>
+  </div>
+ <!-- About Popup -->
+<div class="popup popup-about" style="display: none;background-color: #efeff4">
+  <header class="bar bar-nav bar-nav-blue mousemove" >
+      <a class="icon iconfont icon-jiantou-copy pull-left back" href="#" data-transition='slide-out'>
+      </a>
+      <h1 class="title">易耗品详情</h1>
+     <a href="javascript:;" class="close-popup pull-right button button-white">关闭详情</a>
+  </header>
+  <div class="content">
+      <div class="list-block ul-ptb" >
+      		 <ul>
+		      <li>
+		        <div class="item-content">
+		          <div class="item-inner">
+			            <div class="item-title label">易耗品编码</div>
+			            <div class="item-input">
+			              <input type="text" value="" id="popConsumableCode" disabled/>
+			            </div>
+		     		</div>
+		     	</div>
+		      </li>
+		      <li>
+		        <div class="item-content">
+		          <div class="item-inner">
+		            <div class="item-title label">易耗品名称</div>
+		            <div class="item-input">
+		              <input type="text" id="popConsumableName" disabled/>
+		            </div>
+		     </div>
+		     </div>
+		    <!--   </li>
+		          <li>
+		        <div class="item-content">
+		          <div class="item-inner">
+		            <div class="item-title label">库存</div>
+		            <div class="item-input">
+		              <input type="text" id="popStock" disabled/>
+		            </div>
+		    		 </div>
+		    	 </div>
+		      </li> -->
+		        <li>
+		            <div class="item-content">
+		                <div class="item-inner">
+		                    <div class="item-title label">单位</div>
+		                    <div class="item-input">
+		                        <input type="text"   id="popUnit" disabled/>
+		                    </div>
+		
+		                </div>
+		            </div>
+		        </li>
+		       <li>
+		        <div class="item-content">
+		          <div class="item-inner">
+		            <div class="item-title label">单价</div>
+		            <div class="item-input">
+		              <input type="text" id="popPrice" disabled/>
+		            </div>
+		           
+		     </div>
+		     </div>
+		      </li>
+		       <li>
+		        <div class="item-content">
+		          <div class="item-inner">
+		            <div class="item-title label">供应商</div>
+		            <div class="item-input">
+		              <input type="text" id="popSupplier" disabled/>
+		            </div>
+		           
+		     </div>
+		     </div>
+		      </li>
+		      <li>
+		        <div class="item-content">
+		          <div class="item-inner">
+		            <div class="item-title label">存放位置</div>
+		            <div class="item-input">
+		                <input type="text" id="popPlace" value="" disabled/>
+		            </div>
+		    	</div>
+		    </div>
+		      </li>
+		       <li>
+		        <div class="item-content">
+		          <div class="item-inner">
+		            <div class="item-title label">照片</div>
+		            <div class="item-input addphoto create-actions">
+		              <a style="height:5.5rem;width:49%"> <img style="height:4.5rem;width:100%" class="popImgbox " src="img/Assetsimage/timg.jpg" > </a>
+		            </div>
+		     	</div>
+		     </div>
+		  </li>
+      </ul>
+	 </div>
+	</div>
+</div>
+
+<script type='text/javascript' src="js/zepto.js" charset='utf-8'></script>
+<script type='text/javascript' src="js/sm.js" charset='utf-8'></script>
+<script type='text/javascript' src="js/asset.js" charset='utf-8'></script>
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#btn-search").click(function () {
+            $("h1").hide();
+            $(".searchbar").show();
+            $("#btn-search").hide();
+        });
+        
+        var inventoryNumberPara=splitStr(location.href,"?")[1];
+        if(!inventoryNumberPara){
+            return;
+        }
+        var par=splitStr(inventoryNumberPara,"&");
+        var inventoryNumber=splitStr(par[0],"=")[1];
+        if(inventoryNumber){
+        	//查询盘点单
+			$.ajax({
+			    type : "POST",
+			    url:serverUrl,
+			    headers:{"method":"ContinueCInventory","companyId":companyId,"deptId":deptId,"userId":userId,"EId":EId,"WId":WId,"CId":CId},
+			    async : false,
+			    data: JSON.stringify({inventoryNumber:inventoryNumber}),
+			    dataType:'json',
+		   		success: function(result){
+		   			console.log(result);
+			    	if(result.retCode==0){
+						$("#inventoryNumber").val(result.inventoryNumber);
+			       		$("#picker-site-getplace").val(result.placeName1+"-"+result.placeId1);
+			       		$("#picker-site-getplace2").val(result.placeName2+"-"+result.placeId2);
+			       		$("#picker-site-getplace3").val(result.placeName3+"-"+result.placeId);
+			    
+						
+						joinHtml(result.inventoryInfo);
+			    	}
+		   		 },
+		   		error: function(XMLHttpRequest, textStatus, errorThrown) {
+		            console.log(XMLHttpRequest.status);
+		            $.alert('网络错误,请稍后再试!');
+	       		},
+			}); 
+       		//编辑进入设置地址不可更改
+       		$("#picker-site-getplace").attr("disabled",true);
+       		$("#picker-site-getplace2").attr("disabled",true);
+       		$("#picker-site-getplace3").attr("disabled",true);
+       	
+        }
+    });
+
+</script>
+ <script>
+	var placeMax=[];
+	var placeNames=[];//一级存放
+	var placeIds=[];
+
+	var placeMid=[];
+	var placeMidNames=[];//二级存放
+	var placeMidIds=[];
+	
+	var placeSub=[];
+	var placeSubNames=[];//三级存放
+	var placeSubIds=[];
+	
+	var maxPlaceValue="----";
+	var midPlaceValue="----";
+	var subPlaceValue="----";
+
+	//点击一级存放点
+	$("#picker-site-getplace").click(function(){
+		$("#picker-site-getplace2").val("----");
+		$("#picker-site-getplace3").val("----");
+    	$.ajax({
+		    type : "POST",
+		   	url:serverUrl,
+		    headers:{"method":"getPlace","companyId":companyId,"deptId":deptId,"userId":userId,"EId":EId,"WId":WId,"CId":CId},
+		    async : false,
+		    data: {},
+		    dataType:'json',
+		    success: function(result){
+		   		
+		    	if(result.retCode==0){
+		    		var jsonArr=JSON.parse(result.placeInfo).placeInfo;
+					placeMax[0]="----";//设置下拉选择的默认值
+		   			for(var i=0;i<jsonArr.length;i++){
+		   				placeNames[i]=jsonArr[i].placeName;
+		   			}
+		   			for(var i=0;i<jsonArr.length;i++){
+		   				placeIds[i]=jsonArr[i].placeId;
+		   			}
+		   			for(var i=0;i<jsonArr.length;i++){
+		   				placeMax[i+1]=jsonArr[i].placeName+"-"+jsonArr[i].placeId;
+		   			}
+		   		}else{
+		   			placeNames=[];
+		   			placeIds=[];
+		   			placeMax=[];
+		   		}
+	   		 },
+	   		error: function(XMLHttpRequest, textStatus, errorThrown) {
+	            console.log(XMLHttpRequest.status);
+	            $.alert('网络错误,请稍后再试!');
+       		},
+		}); 
+	});
+	
+	//点击二级存放点
+	$("#picker-site-getplace2").on("click", function(){
+		maxPlaceValue=$("#picker-site-getplace").val();
+		$("#picker-site-getplace3").val("----");
+		if(maxPlaceValue=="----"){
+			$.alert('请先选择一级存放点!');
+			$("#picker-site-getplace").val("----");
+			$("#picker-site-getplace2").val("----");
+		}else{
+			var maxArr=splitByBar(maxPlaceValue);
+			var placeId=maxArr[1];
+			
+			$.ajax({
+			    type : "POST",
+			    url:serverUrl,
+			    headers:{"method":"getPlace2","companyId":companyId,"deptId":deptId,"userId":userId,"EId":EId,"WId":WId,"CId":CId},
+			    async : false,
+			    data: JSON.stringify({placeId:placeId}),
+			    dataType:'json',
+		   		success: function(result){
+			   		
+			    	if(result.retCode==0){
+						var jsonArr=JSON.parse(result.placeInfo).placeInfo;
+						placeMid[0]="----";
+			   			for(var i=0;i<jsonArr.length;i++){
+			   				placeMidNames[i]=jsonArr[i].placeName;
+			   			}
+			   			for(var i=0;i<jsonArr.length;i++){
+			   				placeMidIds[i]=jsonArr[i].placeId;
+			   			}
+			   			for(var i=0;i<jsonArr.length;i++){
+			   				placeMid[i+1]=jsonArr[i].placeName+"-"+jsonArr[i].placeId;
+			   			}
+			   		}else{
+			   			placeMidNames=[];
+			   			placeMidIds=[];
+			   			placeMid=[];
+			   		}
+		   		 },
+		   		error: function(XMLHttpRequest, textStatus, errorThrown) {
+		            console.log(XMLHttpRequest.status);
+		            $.alert('网络错误,请稍后再试!');
+	       		},
+			}); 
+		}
+	});
+		
+	//点击三级存放点
+	$("#picker-site-getplace3").click(function(){
+		midPlaceValue=$("#picker-site-getplace2").val();
+		if(midPlaceValue=="----"){
+			$.alert('请先选择二级存放点!');
+			$("#picker-site-getplace2").val("----");
+			$("#picker-site-getplace3").val("----");
+		}else{
+			var midArr=splitByBar(midPlaceValue);
+			var placeMidId=midArr[1];
+			
+			$.ajax({
+			    type : "POST",
+			    url:serverUrl,
+			    headers:{"method":"getPlace3","companyId":companyId,"deptId":deptId,"userId":userId,"EId":EId,"WId":WId,"CId":CId},
+			    async : false,
+			    data: JSON.stringify({placeId:placeMidId}),
+			    dataType:'json',
+		   		success: function(result){
+			   		
+			    	if(result.retCode==0){
+						var jsonArr=JSON.parse(result.placeInfo).placeInfo;
+						placeSub[0]="----";//设置下来选择的默认值
+			   			for(var i=0;i<jsonArr.length;i++){
+			   				placeSubNames[i]=jsonArr[i].placeName;
+			   			}
+			   			for(var i=0;i<jsonArr.length;i++){
+			   				placeSubIds[i]=jsonArr[i].placeId;
+			   			}
+			   			for(var i=0;i<jsonArr.length;i++){
+			   				placeSub[i+1]=jsonArr[i].placeName+"-"+jsonArr[i].placeId;
+			   			}
+			   		}else{
+			   			placeSubNames=[];
+			   			placeSubIds=[];
+			   			placeSub=[];
+			   		}
+		   		 },
+		   		error: function(XMLHttpRequest, textStatus, errorThrown) {
+		            console.log(XMLHttpRequest.status);
+		            $.alert('网络错误,请稍后再试!');
+	       		},
+			}); 
+		}
+	});
+
+	//一级存放选择
+	$("#picker-site-getplace").picker({
+	
+		  inputReadOnly:true,
+		  toolbarTemplate: '<header class="bar bar-nav">\<button class="button button-link pull-left"></button>\<button class="button button-link pull-right close-picker">确定</button>\<h1 class="title">一级存放点</h1>\</header>',
+		  cols: [
+		    {
+		      textAlign: 'center',
+		      values: placeMax,
+		    }
+		  ],
+		  onClose:function(){
+			  maxPlaceValue=$("#picker-site-getplace").val();
+			  if(maxPlaceValue=='----'){
+				  $.alert('请滑动重新选择一级存放点!');
+			  }
+		  }
+	});
+	
+	//二级选择 
+	$("#picker-site-getplace2").picker({
+		  inputReadOnly:true,
+		  toolbarTemplate: '<header class="bar bar-nav">\<button class="button button-link pull-left"></button>\<button class="button button-link pull-right close-picker">确定</button>\<h1 class="title">二级存放点</h1>\</header>',
+		  cols: [
+		    {
+		      textAlign: 'center',
+		      values: placeMid,
+		    }
+		  ],
+		  onClose:function(){
+			  midPlaceValue=$("#picker-site-getplace2").val();
+			  if(midPlaceValue=="----"&&maxPlaceValue!="----"&&maxPlaceValue){
+				  $.alert('请滑动重新选择选择二级存放点!');
+			  }
+		  }
+	});
+	
+	
+	var inventoryHtml='';
+	//三级存放选择
+	$("#picker-site-getplace3").picker({
+		  inputReadOnly:true,
+		  toolbarTemplate: '<header class="bar bar-nav">\<button class="button button-link pull-left"></button>\<button class="button button-link pull-right close-picker">确定</button>\<h1 class="title">三级存放点</h1>\</header>',
+		  cols: [
+		    {
+		      textAlign: 'center',
+		      values: placeSub,
+		    }
+		  ],
+		  onClose:function(){
+			  subPlaceValue=$("#picker-site-getplace3").val();
+			  if(subPlaceValue=="----"&&maxPlaceValue!="----"&&midPlaceValue!="----"){
+				  $.alert('请选择滑动重新选择三级存放点!');
+				  return;
+			  }
+		
+				//查询盘点单
+				$.ajax({
+				    type : "POST",
+				    url:serverUrl,
+				    headers:{"method":"getCInventory","companyId":companyId,"deptId":deptId,"userId":userId,"EId":EId,"WId":WId,"CId":CId},
+				    async : false,
+				    data: JSON.stringify({inventoryType:1,placeId:splitByBar(subPlaceValue)[1]}),
+				    dataType:'json',
+			   		success: function(result){
+			   			//console.log(result);
+				    	if(result.retCode==0){
+							$("#inventoryNumber").val(result.inventoryNumber);
+							joinHtml(result.inventoryInfo);
+				    	}
+			   		 },
+			   		error: function(XMLHttpRequest, textStatus, errorThrown) {
+			            console.log(XMLHttpRequest.status);
+			            $.alert('网络错误,请稍后再试!');
+		       		},
+				}); 
+		  }
+	}); 
+	
+	//拼接html页面
+	function joinHtml(inventoryInfo){
+		 if(inventoryInfo){
+				var jsonArr=JSON.parse(inventoryInfo).inventoryInfo;
+				console.log(jsonArr);
+				var html='';
+				for(var i=0;i<jsonArr.length;i++){
+				    html+='<div class="list-block">'+
+					         '<ul>'+
+					              '<li class="item-content">'+
+					                  '<div class="item-inner">'+
+					                      '<div class="item-title">自定义编码</div>'+
+					                      '<div class="item-after">'+jsonArr[i].assetCode +'</div>'+
+					                  '</div>'+
+					              '</li>'+
+					              '<li class="item-content">'+
+					                  '<div class="item-inner">'+
+					                      '<div class="item-title">系统易耗品编码</div>'+
+					                      '<div class="item-after">'+jsonArr[i].assetId+'</div>'+
+					                  '</div>'+
+					              '</li>'+
+					              '<li class="item-content">'+
+					                  '<div class="item-inner">'+
+					                      '<div class="item-title">易耗品名称</div>'+
+					                      '<div class="item-after">'+jsonArr[i].assetName+'</div>'+
+					                  '</div>'+
+					              '</li>'+
+					              '<li class="item-content">'+
+					                  '<div class="item-inner">'+
+					                      '<div class="item-title">实有数量</div>'+
+					                      '<div class="item-after"><input type="hidden" value="'+jsonArr[i].inventoryXQId+'"/><input type="text" value="'+jsonArr[i].actualNum+'"/></div>'+
+					                  '</div>'+
+					              '</li>'+
+				          	'</ul>'+
+				      '</div>';     
+	   			}
+				$("#inventoryList").html(html);
+			}else{
+				$("#inventoryList").html('');
+			}
+	}
+	
+	//点击查看易耗品详情
+	$("#detail").click(function(){
+		
+		var subPlaceVal='';
+		var placeId='';
+		
+		var inventoryNumber=$("#inventoryNumber").val();
+  		if(!inventoryNumber){
+	   		 $.alert("请先进行存放点选择");
+	   		 return;
+  		}
+		
+		var consumableId=$("#consumableId").val();
+		if(!consumableId){
+	   		 $.alert("请输入易耗品编码");
+	   		 return;
+ 		}
+		
+
+		subPlaceVal=$("#picker-site-getplace3").val();
+		placeId=splitByBar(subPlaceVal)[1];
+		if(!placeId){
+	   		 $.alert("请先选择存放点");
+	   		 return;
+  		}
+		headers={"method":"CLIinput","companyId":companyId,"deptId":deptId,"userId":userId,"EId":EId,"WId":WId,"CId":CId};
+		data={inventoryNumber:inventoryNumber,placeId:placeId,consumableId:consumableId};
+		queryDetail(headers,data);
+		
+	});
+	
+	//输入查询盘点单详情
+	function queryDetail(headers,data){
+		$.ajax({
+		    type : "POST",
+		    url:serverUrl,
+		    headers:headers,
+		    async : false,
+		    data: JSON.stringify(data),
+		    dataType:'json',
+	   		success: function(result){
+	   			//console.log(result);
+		    	if(result.retCode!=0&&result.retCode!=4&&result.retCode!=5){
+		    		 $.alert(result.retInfo);
+		    		 //return;
+		    	}
+		    	if(result.retCode==4||result.retCode==5){
+		    		$.alert(result.retInfo);
+		    		$("#inventoryList").html('');
+		    		return;
+		    	}
+	   			
+	   			$("#popConsumableCode").val(result.assetCode);
+				$("#popConsumableName").val(result.assetName);
+				//$("#popStock").val(result.stock);
+				$("#popUnit").val(result.unit);
+				$("#popPrice").val(result.price);
+				$("#popSupplier").val(result.supplier);
+				$("#popPrice").val(result.price);
+				$("#popPlace").val(result.place1+' '+result.place2+' '+result.place3);
+				$(".popImgbox").attr('src',serverPicUrl+result.picture);
+				
+				setTimeout(function(){
+					$.popup('.popup-about');
+				},300);//300毫秒后打开弹出层
+				
+				if(result.retCode==3){//报废状态
+					$("#inventoryList").html('');
+		    		return;
+		    	}
+		    	
+				//拼装资产列表
+   				var html=inventoryHtml+'<div class="list-block">'+
+				                '<ul>'+
+				                 '<li class="item-content">'+
+				                     '<div class="item-inner">'+
+				                         '<div class="item-title">自定义编码</div>'+
+				                         '<div class="item-after">'+result.assetCode+'</div>'+
+				                     '</div>'+
+				                 '</li>'+
+				                 '<li class="item-content">'+
+				                     '<div class="item-inner">'+
+				                         '<div class="item-title">系统易耗品编码</div>'+
+				                         '<div class="item-after">'+result.assetId+'</div>'+
+				                     '</div>'+
+				                 '</li>'+
+				                 '<li class="item-content">'+
+				                     '<div class="item-inner">'+
+				                         '<div class="item-title">易耗品名称</div>'+
+				                         '<div class="item-after">'+result.assetName+'</div>'+
+				                     '</div>'+
+				                 '</li>'+
+				                 '<li class="item-content">'+
+				                     '<div class="item-inner">'+
+				                         '<div class="item-title">实有数量</div>'+
+				                         '<div class="item-after"><input type="hidden" value="'+result.inventoryXQId+'"/><input type="text" value=""/></div>'+
+				                     '</div>'+
+				                 '</li>'+
+				             '</ul>'+
+				         '</div>';
+					$("#inventoryList").html(html);
+		    	
+	   		 },
+	   		error: function(XMLHttpRequest, textStatus, errorThrown) {
+	            console.log(XMLHttpRequest.status);
+	            $.alert('网络错误,请稍后再试!');
+       		},
+		}); 
+	}
+	
+	//扫码查看详情
+	function onScanning(){
+
+		var subPlaceVal='';
+   		var placeId='';
+   		var inventoryNumber=$("#inventoryNumber").val();
+		var scanningAssetId='';
+		
+   		if(!inventoryNumber){
+	   		 $.alert("请先进行存放点选择");
+	   		 return;
+   		}
+   		
+		subPlaceVal=$("#picker-site-getplace3").val();
+   		placeId=splitByBar(subPlaceVal)[1];
+  	   	if(!placeId){
+	   		 $.alert("请先选择存放点");
+	   		 return;
+ 		}
+
+		cordova.plugins.barcodeScanner.scan(
+	      function (result) {
+	    	  scanningConsumableId=result.text;
+				if(!scanningConsumableId){
+			 		 $.alert("未获取易耗品编码");
+			 		 return;
+				}
+				$("#consumableId").val(scanningConsumableId.substr(6));
+		
+				headers={"method":"CLIScancode","companyId":companyId,"deptId":deptId,"userId":userId,"EId":EId,"WId":WId,"CId":CId};
+	  			data={inventoryNumber:inventoryNumber,placeId:placeId,consumableId:scanningConsumableId};
+		
+				//扫码查询盘点单详情
+				$.ajax({
+				    type : "POST",
+				    url:serverUrl,
+				    headers:headers,
+				    async : false,
+				    data: JSON.stringify(data),
+				    dataType:'json',
+			   		success: function(result){
+			   			console.log(result);
+			   			if(result.retCode!=0&&result.retCode!=4&&result.retCode!=5){
+							 $.alert(result.retInfo);
+			   			}
+			   			if(result.retCode==4||result.retCode==5){
+				    		$.alert(result.retInfo);
+				    		$("#inventoryList").html('');
+				    		return;
+				    	}
+			   			
+			   			$("#popConsumableCode").val(result.assetCode);
+						$("#popConsumableName").val(result.assetName);
+						$("#popUnit").val(result.unit);
+						$("#popPrice").val(result.price);
+						$("#popSupplier").val(result.supplier);
+						$("#popPrice").val(result.price);
+						$("#popPlace").val(result.place1+' '+result.place2+' '+result.place3);
+						$(".popImgbox").attr('src',serverPicUrl+result.picture);
+						
+						setTimeout(function(){
+							$.popup('.popup-about');
+						},300);//300毫秒后打开弹出层
+						
+						if(result.retCode==3){//报废状态
+							$("#inventoryList").html('');
+				    		return;
+				    	}
+				    	
+						//拼装资产列表
+		   				var html=inventoryHtml+'<div class="list-block">'+
+						                '<ul>'+
+						                 '<li class="item-content">'+
+						                     '<div class="item-inner">'+
+						                         '<div class="item-title">自定义编码</div>'+
+						                         '<div class="item-after">'+result.assetCode+'</div>'+
+						                     '</div>'+
+						                 '</li>'+
+						                 '<li class="item-content">'+
+						                     '<div class="item-inner">'+
+						                         '<div class="item-title">系统易耗品编码</div>'+
+						                         '<div class="item-after">'+result.assetId+'</div>'+
+						                     '</div>'+
+						                 '</li>'+
+						                 '<li class="item-content">'+
+						                     '<div class="item-inner">'+
+						                         '<div class="item-title">易耗品名称</div>'+
+						                         '<div class="item-after">'+result.assetName+'</div>'+
+						                     '</div>'+
+						                 '</li>'+
+						                 '<li class="item-content">'+
+						                     '<div class="item-inner">'+
+						                         '<div class="item-title">实有数量</div>'+
+						                         '<div class="item-after"><input type="hidden" value="'+result.inventoryXQId+'"/><input type="text" value=""/></div>'+
+						                     '</div>'+
+						                 '</li>'+
+						             '</ul>'+
+						         '</div>';
+							$("#inventoryList").html(html);
+			   		 },
+			   		error: function(XMLHttpRequest, textStatus, errorThrown) {
+			            console.log(XMLHttpRequest.status);
+			            $.alert('网络错误,请稍后再试!');
+		       		},
+				}); 
+	      }, 
+	      function (error) {
+	          $.alert("Scanning failed: " + error);
+	      }
+	    );
+	} 
+	
+	//保存盘点单
+	$("#btnSave").click(function(){
+		//判断参数
+		message=judgeParam();
+		headersSave={"method":"saveCInventory","companyId":companyId,"deptId":deptId,"userId":userId,"EId":EId,"WId":WId,"CId":CId};
+		
+		if(message){
+			overInventory(headersSave,message);
+		}else{
+			$.alert("请扫码或输入易耗品编码,进行资产详情确认!!!");
+			return;
+		}
+	});
+	//完成盘点单
+	$("#btnFinish").click(function(){
+		message=judgeParam();
+		headersFinish={"method":"submitCInventory","companyId":companyId,"deptId":deptId,"userId":userId,"EId":EId,"WId":WId,"CId":CId};
+		
+		if(message){
+			overInventory(headersFinish,message);
+		}else{
+			$.alert("请扫码或输入易耗品编码,进行资产详情确认!!!");
+			return;
+		}
+		//完成后返回列表页
+		setTimeout(function(){
+			self.location='ConsumableInventoryList.html'; 
+						},500);
+	});
+
+	function judgeParam(){
+		
+		var subPlaceVal='';
+		var placeId='';
+		var inventoryNumber=$("#inventoryNumber").val();
+   		
+  		if(!inventoryNumber){
+	   		 $.alert("请先进行存放点选择");
+	   		 return false;
+  		}
+  		
+		subPlaceVal=$("#picker-site-getplace3").val();
+		placeId=splitByBar(subPlaceVal)[1];
+		if(!placeId){
+	   		 $.alert("请先选择存放点");
+	   		 return false;
+  		}
+  		
+		//组装inventoryInfo参数
+   		var inventoryInfo='';
+   		var arrInv=[];
+  		$("#inventoryList").each(function(){
+  			 $(this).find('ul li input').each(function() {  
+  				arrInv.push($(this).val());
+  			 });
+  		});
+        for (var i = 0 ; i < arrInv.length; i++) {  
+        	var info;	 
+        	if(i%2 ==0){
+        		info=arrInv[i]+"#";
+        	}else{
+				if(!isNumber(arrInv[i])){
+					$.alert("请输入实有数量");
+				}else{
+        			info=arrInv[i]+";";
+				}
+        	}
+        	 inventoryInfo=inventoryInfo+info;
+        }  
+        
+       	inventory= {inventoryInfo:inventoryInfo,inventoryNumber:inventoryNumber,placeId:placeId,inventoryType:1};//inventoryType:1为易耗品
+        if(!inventoryInfo){
+        	return false;
+        }else{
+	        return inventory;
+        }
+   }
+	//保存完成有地址盘点单子
+	function overInventory(headers,message){
+		$.ajax({
+		    type : "POST",
+		    url:serverUrl,
+		    headers:headers,
+		    async : false,
+		    data: JSON.stringify(message),
+		    dataType:'json',
+	   		success: function(result){
+				if(result.retCode!=0){
+					 $.alert(result.retInfo);
+				}else{
+					 $.alert("保存成功");
+				}
+	   		 },
+	   		error: function(XMLHttpRequest, textStatus, errorThrown) {
+	            console.log(XMLHttpRequest.status);
+	            $.alert('网络错误,请稍后再试!');
+       		},
+		}); 
+	}
+</script>
+</body>
+</html>

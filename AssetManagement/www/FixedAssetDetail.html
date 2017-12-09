@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>UTL物联通资产系统</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="css/sm.css">
+    <link rel="stylesheet" href="iconfont/iconfont.css">
+     <link href="css/main.css" rel="stylesheet">
+ 
+  </head>
+  <body>
+    <div class="page-group">
+        <div class="page">
+      <header class="bar bar-nav bar-nav-blue mousemove" >
+          <a class="icon iconfont icon-jiantou-copy pull-left" href="#" data-transition='slide-out' onclick="back()">
+    </a>
+    <h1 class="title">固定资产详情</h1>
+<!--           <button class="button button-white pull-right dnone" id="btnsave" >
+              保存
+          </button>
+          <button class="button button-white pull-right" id="btnupdata">
+              修改
+          </button> -->
+
+ </header>
+
+ <div class="content">
+    <div class="list-block ul-ptb" >
+    <ul>
+      <li>
+        <div class="item-content">
+          <div class="item-inner">
+            <div class="item-title label">系统资产编码</div>
+            <div class="item-input">
+              <input type="text" id="assetId" value="" disabled/>
+            </div>
+        <!--   <div class="item-media">
+           <a href="#" class="btniconfont"><i class="icon iconfont icon-saoyisao4 icon-saoma"></i></a>
+           </div>-->
+
+     </div>
+     </div>
+      </li>
+        <li>
+            <div class="item-content">
+                <div class="item-inner">
+                    <div class="item-title label">固定资产卡片编码</div>
+                    <div class="item-input">
+                        <input type="text" id="assetCode" value="" disabled/>
+                    </div>
+                </div>
+            </div>
+        </li>
+          <li>
+        <div class="item-content">
+          <div class="item-inner">
+            <div class="item-title label">资产名称</div>
+            <div class="item-input">
+              <input type="text" id="assetName" value="" disabled/>
+            </div>
+           
+     </div>
+     </div>
+      </li>
+        <li>
+            <div class="item-content">
+                <div class="item-inner">
+                    <div class="item-title label">资产类别</div>
+                    <div class="item-input">
+                        <input type="text" id="category-picker" value="" disabled/>
+                    </div>
+
+                </div>
+            </div>
+        </li>
+     <!--    <li>
+	        <div class="item-content">
+	          <div class="item-inner">
+	            <div class="item-title label">数量</div>
+	            <div class="item-input">
+	              <input type="text"  value="1" />
+	            </div>
+	           
+	     	</div>
+	     </div>
+      </li> -->
+       <li>
+        <div class="item-content">
+            <div class="item-inner">
+                <div class="item-title label">购买价格</div>
+                <div class="item-input">
+                    <input type="text" id="price" value="" disabled/>
+                </div>
+
+            </div>
+        </div>
+    </li>
+        <li>
+            <div class="item-content">
+                <div class="item-inner">
+                    <div class="item-title label">报修维护电话</div>
+                    <div class="item-input">
+                        <input type="text" id="mTelephone" disabled/>
+                    </div>
+
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="item-content">
+                <div class="item-inner">
+                    <div class="item-title label">制造商</div>
+                    <div class="item-input">
+                        <input type="text" value="" id="manufacturer" disabled/>
+                    </div>
+
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="item-content">
+                <div class="item-inner">
+                    <div class="item-title label">提供商</div>
+                    <div class="item-input">
+                        <input type="text" value=""  id="rentProvider" disabled/>
+                    </div>
+
+                </div>
+            </div>
+        </li>
+       <li>
+        <div class="item-content">
+          <div class="item-inner">
+            <div class="item-title label">存放城市</div>
+            <div class="item-input">
+              <input type="text" value="" id="city" disabled/>
+            </div>
+           
+     </div>
+     </div>
+      </li>
+      <li>
+        <div class="item-content">
+          <div class="item-inner">
+            <div class="item-title label">存放位置</div>
+            <div class="item-input">
+                <input type="text" id="picker-site" value=""  disabled/>
+            </div>
+    </div></div>
+          
+      </li>
+
+       <li>
+        <div class="item-content">
+          <div class="item-inner">
+            <div class="item-title label">照片</div>
+            <div class="item-input addphoto create-actions">
+              <a href="#"><img class="imgbox" src="img/Assetsimage/diannao.jpg" disabled> </a>
+            </div>
+     </div>
+     </div>
+      </li>
+        <li>
+            <div class="item-content">
+                <div class="item-inner">
+                    <div class="item-title label">领用人</div>
+                    <div class="item-input">
+                        <input type="text" id="employeeName" disabled/>
+                    </div>
+                </div>
+            </div>
+
+        </li>
+        <li>
+            <div class="item-content">
+                <div class="item-inner">
+                    <div class="item-title label">交接日期</div>
+                    <div class="item-input">
+                        <input type="date"  value="" id="lastTakeDate" disabled>
+                    </div>
+                </div>
+            </div>
+
+        </li>
+        <li>
+            <div class="item-content">
+                <div class="item-inner">
+                    <div class="item-title label">维修履历</div>
+                    <div class="item-input">
+                        <input type="text" id="cV" disabled/>
+                    </div>
+                </div>
+            </div>
+
+        </li>
+        <li>
+            <div class="item-content">
+                <div class="item-inner">
+                    <div class="item-title label">备注</div>
+                    <div class="item-input">
+                        <textarea class="form-control" id="inputmark" cols="10" rows="4" disabled></textarea>
+                    </div>
+                </div>
+            </div>
+
+        </li>
+      </ul>
+      </div>
+
+     <div class="content-block" >
+         <div class="buttons-row">
+             <a href="#tab1" class="tab-link active button purchaseTab1">购置</a>
+             <a href="#tab2" class="tab-link button purchaseTab2">租赁</a>
+
+         </div>
+     </div>
+     <div class="tabs bgwhite">
+         <div id="tab1" class="tab active">
+             <div class="content-block">
+                 <div class="list-block ul-ptb" >
+                     <ul id="buy">
+                     	 <li>
+                            <div class="item-content">
+                                <div class="item-inner">
+                                    <div class="item-title label">购置日期</div>
+                                    <div class="item-input">
+                                        <input type="date"  value="" id="purchaseDate" disabled>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </li>
+                         <li>
+                             <div class="item-content">
+                                 <div class="item-inner">
+                                     <div class="item-title label">折旧年限</div>
+                                     <div class="item-input">
+                                         <input type="text" value="" id="depreciation" disabled/>
+                                     </div>
+                                 </div>
+                             </div>
+
+                         </li>
+                         <li>
+                             <div class="item-content">
+                                 <div class="item-inner">
+                                     <div class="item-title label">保修期</div>
+                                     <div class="item-input">
+                                         <input type="text" value="" id="warranty" disabled/>
+                                     </div>
+                                 </div>
+                             </div>
+
+                         </li>
+                         <li>
+                             <div class="item-content">
+                                 <div class="item-inner">
+                                     <div class="item-title label">发票号</div>
+                                     <div class="item-input">
+                                         <input type="text" value="" id="invoice" disabled/>
+                                     </div>
+                                 </div>
+                             </div>
+
+                         </li>
+
+                         <li>
+                             <div class="item-content">
+                                 <div class="item-inner">
+                                     <div class="item-title label">发票日期</div>
+                                     <div class="item-input">
+                                         <input type="date"  value="" id="invoiceDate" disabled/>
+                                     </div>
+                                 </div>
+                             </div>
+
+                         </li>
+                         <!-- <li>
+                             <div class="item-content">
+                                 <div class="item-inner">
+                                     <div class="item-title label">备注</div>
+                                     <div class="item-input">
+                                         <textarea class="form-control" id="inputmark" cols="10" rows="4"></textarea>
+                                     </div>
+                                 </div>
+                             </div>
+
+                         </li> -->
+                     </ul>
+
+                 </div>
+             </div>
+         </div>
+         <div id="tab2" class="tab">
+             <div class="content-block">
+                 <div class="list-block ul-ptb" >
+                     <ul id="lease">
+
+                         <li>
+                             <div class="item-content">
+                                 <div class="item-inner">
+                                     <div class="item-title label">起租日期</div>
+                                     <div class="item-input">
+                                         <input type="date"  value="" id="rentBegDate" disabled/>
+                                     </div>
+                                 </div>
+                             </div>
+
+                         </li>
+                         <li>
+                             <div class="item-content">
+                                 <div class="item-inner">
+                                     <div class="item-title label">止租日期</div>
+                                     <div class="item-input">
+                                         <input type="date"  value="" id="rentEndDate" disabled/>
+                                     </div>
+                                 </div>
+                             </div>
+
+                         </li>
+
+                     </ul>
+                 </div>
+             </div>
+         </div>
+
+     </div>
+
+
+     <div class="list-block ul-ptb" hidden >
+         <ul>
+             <li>
+                 <div class="item-content">
+                     <div class="item-inner">
+                         <div class="item-title label">使用人</div>
+                         <div class="item-input"></div>
+                     </div>
+                 </div>
+             </li>
+             <li>
+                 <div class="item-content">
+                     <div class="item-inner">
+                         <div class="item-title label">参考编号</div>
+                         <div class="item-input"> <input type="text" /></div>
+                     </div>
+                 </div>
+             </li>
+             <li>
+                 <div class="item-content">
+                     <div class="item-inner">
+                         <div class="item-title label">操作系统</div>
+                         <div class="item-input"> <input type="text" /></div>
+                     </div>
+                 </div>
+             </li>
+             <li>
+                 <div class="item-content">
+                     <div class="item-inner">
+                         <div class="item-title label">CPU</div>
+                         <div class="item-input"> <input type="text" /></div>
+                     </div>
+                 </div>
+             </li>
+             <li>
+                 <div class="item-content">
+                     <div class="item-inner">
+                         <div class="item-title label">内存</div>
+                         <div class="item-input"> <input type="text" /></div>
+                     </div>
+                 </div>
+             </li>
+             <li>
+                 <div class="item-content">
+                     <div class="item-inner">
+                         <div class="item-title label">硬盘</div>
+                         <div class="item-input"> <input type="text" /></div>
+                     </div>
+                 </div>
+             </li>
+             <li>
+                 <div class="item-content">
+                     <div class="item-inner">
+                         <div class="item-title label">驱动器</div>
+                         <div class="item-input"> <input type="text" /></div>
+                     </div>
+                 </div>
+             </li>
+             <li>
+                 <div class="item-content">
+                     <div class="item-inner">
+                         <div class="item-title label">显示卡</div>
+                         <div class="item-input"> <input type="text" /></div>
+                     </div>
+                 </div>
+             </li>
+             <li>
+                 <div class="item-content">
+                     <div class="item-inner">
+                         <div class="item-title label">部门</div>
+                         <div class="item-input"> <input type="text" /></div>
+                     </div>
+                 </div>
+             </li>
+         </ul>
+     </div>
+
+    </div>
+            </div>
+   </div> 
+     <script type='text/javascript' src="js/zepto.js" charset='utf-8'></script>
+    <script type='text/javascript' src="js/sm.js" charset='utf-8'></script>
+    <script type="text/javascript" src="js/category.js" charset="utf-8"></script>
+    <script type='text/javascript' src="js/asset.js" charset='utf-8'></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+        	 var str=location.href; 
+        	 var assetId=str.split("?")[1].split("=")[1];
+        	  
+        	  $("#assetId").val(storage["assetId"+assetId]);
+        	  $("#assetCode").val(storage["assetCode"+assetId]);
+        	  $("#assetName").val(storage["assetName"+assetId]);
+        	  $("#category-picker").val(storage["assetTypeName"+assetId]);
+        	  $("#price").val(storage["price"+assetId]);
+        	  $("#mTelephone").val(storage["mTelephone"+assetId]);
+        	  $("#manufacturer").val(storage["manufacturer"+assetId]);
+        	  $("#rentProvider").val(storage["rentProvider"+assetId]);
+        	  $("#city").val(storage["city"+assetId]);
+        	  $("#inputmark").val(storage["note"+assetId]);
+        	  $("#picker-site").val(storage["place"+assetId]);
+        	  
+        	  $("#employeeName").val(storage["employeeName"+assetId]);
+        	  $("#cV").val(storage["cV"+assetId]);
+        	  $("#lastTakeDate").val(storage["lastTakeDate"+assetId]);
+        	  
+        	  var purchase =storage["purchase"+assetId]
+        	  if(purchase){
+        		  $(".purchaseTab1").addClass("active");
+        		  
+            	  $("#purchaseDate").val(storage["purchaseDate"+assetId]);
+            	  $("#depreciation").val(storage["depreciation"+assetId]);
+            	  $("#warranty").val(storage["warranty"+assetId]);
+            	  $("#invoice").val(storage["invoice"+assetId]);
+            	  $("#invoiceDate").val(storage["invoiceDate"+assetId]);
+        	  }else{
+        		  $(".purchaseTab2").addClass("active");
+	        	  $("#rentBegDate").val(storage["rentBegDate"+assetId]);
+	        	  $("#rentEndDate").val(storage["rentEndDate"+assetId]);
+        	  }
+        	  
+        	  $(".imgbox").attr('src',serverPicUrl+storage["picture"+assetId]);
+        	//  
+            $("#btnupdata").click(function () {
+                $("#btnupdata").hide();
+                $("#btnsave").show();
+            });
+
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>UTL物联通资产系统</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="css/sm.css">
+    <link rel="stylesheet" href="iconfont/iconfont.css">
+     <link href="css/main.css" rel="stylesheet">
+ 
+  </head>
+  <body>
+    <div class="page-group">
+   <div class="page">
+    <header class="bar bar-nav bar-nav-blue mousemove" >
+          <a class="icon iconfont icon-jiantou-copy pull-left back" href="#" data-transition='slide-out'>
+    </a>
+    <h1 class="title">易耗品入库</h1>
+ </header>
+
+ <div class="content">
+    <div class="list-block ul-ptb" >
+    <ul>
+        <li>
+            <div class="item-content">
+                <div class="item-inner">
+                    <div class="item-title label">员工编码</div>
+                    <div class="item-input">
+                        <input type="text" value="必填" />
+                    </div>
+                    <div class="item-media">
+                        <a href="#" class="btniconfont"><i class="icon iconfont icon-saoyisao3 icon-erweima"></i></a>
+                    </div>
+
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="item-content">
+                <div class="item-inner">
+                    <div class="item-title label">数量</div>
+                    <div class="item-input">
+                        <input type="text" />
+                    </div>
+                </div>
+            </div>
+        </li>
+      <li>
+        <div class="item-content">
+          <div class="item-inner">
+            <div class="item-title label">系统易耗品编码</div>
+            <div class="item-input">
+              <input type="text" value="12334895857463" disabled/>
+            </div>
+        <!--   <div class="item-media">
+           <a href="#" class="btniconfont"><i class="icon iconfont icon-saoyisao4 icon-saoma"></i></a>
+           </div>-->
+
+     </div>
+     </div>
+      </li>
+          <li>
+        <div class="item-content">
+          <div class="item-inner">
+            <div class="item-title label">易耗品名称</div>
+            <div class="item-input">
+              <input type="text" value="笔记本" disabled/>
+            </div>
+           
+     </div>
+     </div>
+      </li>
+        <li>
+            <div class="item-content">
+                <div class="item-inner">
+                    <div class="item-title label">库存数量</div>
+                    <div class="item-input">
+                        <input type="text" value="20" disabled/>
+                    </div>
+
+                </div>
+            </div>
+        </li>
+
+       <li>
+        <div class="item-content">
+          <div class="item-inner">
+            <div class="item-title label">单价</div>
+            <div class="item-input">
+              <input type="text" value="2.5元" disabled />
+            </div>
+           
+     </div>
+     </div>
+      </li>
+        <li>
+            <div class="item-content">
+                <div class="item-inner">
+                    <div class="item-title label">单位</div>
+                    <div class="item-input">
+                        <input type="text" value="本" disabled />
+                    </div>
+
+                </div>
+            </div>
+        </li>
+
+      <li>
+        <div class="item-content">
+          <div class="item-inner">
+            <div class="item-title label">存放具体位置</div>
+            <div class="item-input">
+                <input type="text" id="picker-site" value="仓库 一栋 一楼" disabled/>
+            </div>
+    </div></div>
+          
+      </li>
+
+
+      </ul>
+      </div>
+     <div class="content-block">
+  <a href="#" class="button button-big button-fill button-confirm">确定</a>
+  </div>
+  
+
+    </div>
+   </div>
+    </div>
+    <script type='text/javascript' src="js/zepto.js" charset='utf-8'></script>
+    <script type='text/javascript' src="js/sm.js" charset='utf-8'></script>
+<!--    <script>
+	  $(document).on('click','.confirm-title-ok-cancel', function () {
+      $.confirm('确定登记并入库吗?', '该商品不存在',
+        function () {
+          $.alert('You clicked 登记入库 button');
+        },
+        function () {
+          $.alert('You clicked 取消 button');
+        }
+      );
+  });
+    </script>-->
+  <!--<script>
+      $(document).on('click','.create-actions', function () {
+          var buttons1 = [
+              {
+                  text: '请选择',
+                  label: true
+              },
+              {
+                  text: '拍照',
+                  bold: true,
+                  color: 'default',
+                  onClick: function() {
+                      $.alert("你选择了“拍照“");
+                  }
+              },
+              {
+                  text: '从手机相册选择',
+                  onClick: function() {
+                      $.alert("你选择了“从手机相册选择“");
+                  }
+              }
+          ];
+          var buttons2 = [
+              {
+                  text: '取消',
+                  bg: 'danger'
+              }
+          ];
+          var groups = [buttons1, buttons2];
+          $.actions(groups);
+      });
+  </script>-->
+
+   <!-- <script>
+        $("#picker-site").picker({
+            toolbarTemplate: '<header class="bar bar-nav">\
+  <button class="button button-link pull-right close-picker">确定</button>\
+  <h1 class="title">请选择具体位置</h1>\
+  </header>',
+            cols: [
+                {
+                    textAlign: 'center',
+                    values: ['工厂', '办公楼']
+                    //如果你希望显示文案和实际值不同，可以在这里加一个displayValues: [.....]
+                },
+                {
+                    textAlign: 'center',
+                    values: ['一栋', '二栋', '三栋', '四栋', '五栋', '六栋', '七栋']
+                },
+                {
+                    textAlign: 'center',
+                    values: ['一楼', '二楼','三楼']
+                }
+            ]
+
+        });
+    </script>-->
+    </body>
+    </html>

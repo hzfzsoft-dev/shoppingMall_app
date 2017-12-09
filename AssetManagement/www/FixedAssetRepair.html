@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>UTL物联通资产系统</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="css/sm.css">
+    <link rel="stylesheet" href="iconfont/iconfont.css">
+     <link href="css/main.css" rel="stylesheet">
+ 
+  </head>
+  <body>
+    <div class="page-group">
+        <div class="page">
+      <header class="bar bar-nav bar-nav-blue mousemove" >
+          <a class="icon iconfont icon-jiantou-copy pull-left back" href="#" data-transition='slide-out'>
+    </a>
+    <h1 class="title">维修</h1>
+ </header>
+
+ <div class="content">
+    <div class="list-block ul-ptb">
+    <ul>
+      <li>
+        <div class="item-content">
+          <div class="item-inner">
+            <div class="item-title label">资产编码</div>
+            <div class="item-input">
+              <input type="text" placeholder="必填" id="assetId"/>
+            </div>
+           <div class="item-media">
+           <a href="#" class="btniconfont" onclick="assetScanning()"><i class="icon iconfont icon-saoyisao4 icon-saoma"></i></a>
+           </div>
+     </div>
+     </div>
+      </li>
+     <!--   <li>
+            <div class="item-content">
+                <div class="item-inner">
+                    <div class="item-title label">资产名称</div>
+                    <div class="item-input">
+                        <input type="text" placeholder="必填"/>
+                    </div>
+
+                </div>
+            </div>
+        </li>-->
+        <li>
+            <div class="item-content">
+                <div class="item-inner">
+                    <div class="item-title label">员工编码</div>
+                    <div class="item-input">
+                        <input type="text" placeholder="必填" id="employeeId"/>
+                    </div>
+                    <div class="item-media">
+                        <a href="#" class="btniconfont" onclick="employeeScanning()"><i class="icon iconfont icon-saoyisao3 icon-erweima"></i></a>
+                    </div>
+                </div>
+            </div>
+        </li>
+      <li>
+   <!--     <li>
+            <div class="item-content">
+                <div class="item-inner">
+                    <div class="item-title label">数量</div>
+                    <div class="item-input">
+                        <input type="text" />
+                    </div>
+                </div>
+            </div>
+        </li>-->
+
+        <li>
+            <div class="item-content">
+                <div class="item-inner">
+                    <div class="item-title label">维修原因</div>
+                    <div class="item-input">
+                        <textarea class="form-control"  cols="10" rows="4" id="cv"></textarea>
+                    </div>
+                </div>
+            </div>
+
+        </li>
+      </ul>
+      </div>
+     <div class="content-block">
+  <a href="#" class="button button-big button-fill button-confirm" id="submitRepair">提交</a>
+  </div>
+    </div>
+            </div>
+   </div> 
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script type='text/javascript' src="js/zepto.js" charset='utf-8'></script>
+<script type='text/javascript' src="js/sm.js" charset='utf-8'></script>
+<script type='text/javascript' src="js/asset.js" charset='utf-8'></script>
+<script type="text/javascript">
+//资产扫码
+function assetScanning(){
+	cordova.plugins.barcodeScanner.scan(
+      function (result) {
+          $("#assetId").val(result.text);    
+      }, 
+      function (error) {
+          $.alert("Scanning failed: " + error);
+      }
+   );
+} 
+function employeeScanning(){
+	cordova.plugins.barcodeScanner.scan(
+      function (result) {
+          $("#employeeId").val(result.text);    
+      }, 
+      function (error) {
+          $.alert("Scanning failed: " + error);
+      }
+   );
+} 
+
+$("#submitRepair").click(function(){
+	var assetId=$("#assetId").val();  
+	if(!assetId){
+		$.alert("请输入资产编码");
+		return;
+	}
+	
+	var employeeId=$("#employeeId").val();   
+	if(!employeeId){
+		$.alert("请输入员工编码");
+		return;
+	}
+	var cv=$("#cv").val();
+	if(!cv){
+		cv='';
+	}
+
+	$.ajax({
+	    type : "POST",
+	    url:serverUrl,
+	    headers:{"method":"assetRepair","companyId":companyId,"deptId":deptId,"userId":userId,"EId":EId,"WId":WId,"CId":CId},
+	    async : false,
+	    data: JSON.stringify({assetId:assetId,employeeId:employeeId,cv:cv}),
+	    dataType:'json',
+   		success: function(result){
+
+	    	$.alert(result.retInfo);
+	    	if(result.retCode==0){
+	    		setTimeout("javascript:location.href='Index.html'", 1000); 
+	    	}
+   		 },
+   		error: function(XMLHttpRequest, textStatus, errorThrown) {
+            console.log(XMLHttpRequest.status);
+            $.alert('网络错误,请稍后再试!');
+   		},
+	}); 
+});
+
+</script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>UTL物联通资产系统</title>
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="stylesheet" href="css/sm.css">
+<link rel="stylesheet" href="iconfont/iconfont.css">
+<link href="css/main.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="page-group">
+        <div class="page">
+      <header class="bar bar-nav bar-nav-blue mousemove" >
+          <a class="icon iconfont icon-jiantou-copy pull-left" href="Login.html" onclick="back()" data-transition='slide-out'>
+    </a>
+    <h1 class="title">服务器域名设置</h1>
+ </header>
+
+        <div class="content">
+            <div class="list-block ul-ptb">
+                <ul>
+                    <!-- Text inputs -->
+                    <li>
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">服务器地址</div>
+                                <div class="item-input">
+                                    <input type="text" id="serverAddress" value="http://47.89.28.145:9090">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                   <!--  <li>
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">大图标路径</div>
+                                <div class="item-input">
+                                    <input type="text" >
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">小图标路径</div>
+                                <div class="item-input">
+                                    <input type="text" >
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">商品大图标路径</div>
+                                <div class="item-input">
+                                    <input type="text" >
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">商品小图标路径</div>
+                                <div class="item-input">
+                                    <input type="text" >
+                                </div>
+                            </div>
+                        </div>
+                    </li> -->
+                </ul>
+                </div>
+            <div class="content-block">
+                <a href="#" class="button button-big button-fill button-confirm"  id="setServer">提交</a>
+            </div>
+  		 </div>
+       </div>
+ </div>
+<script type='text/javascript' src="js/zepto.js" charset='utf-8'></script>
+<script type='text/javascript' src="js/sm.js" charset='utf-8'></script>
+<script type='text/javascript' src="js/asset.js" charset='utf-8'></script>
+<script>
+// $("#picker-name").picker({
+//   toolbarTemplate: '<header class="bar bar-nav">\<button class="button button-link pull-right close-picker">确定</button>\<h1 class="title">请选择具体位置</h1>\</header>',
+//   cols: [
+//     {
+//       textAlign: 'center',
+//       values: ['工厂', '办公楼']
+//       //如果你希望显示文案和实际值不同，可以在这里加一个displayValues: [.....]
+//     },
+//     {
+//       textAlign: 'center',
+//       values: ['一栋', '二栋', '三栋', '四栋', '五栋', '六栋', '七栋']
+//     },
+//     {
+//       textAlign: 'center',
+//       values: ['一楼', '二楼','三楼']
+//     }
+//   ]
+// });
+
+	$(document).ready(function(){
+		if(serverAdd){
+			$("#serverAddress").val(serverAdd);
+		}
+	});
+
+	$("#setServer").click(function(){
+		serverAdd=$("#serverAddress").val();
+		if(serverAdd){
+		   	storage["serverAdd"]=serverAdd; 
+		   	self.location='Login.html'; 
+		}else{
+			  $.alert('请填写服务器地址!');
+		}
+	});
+
+</script>
+</body>
+</html>

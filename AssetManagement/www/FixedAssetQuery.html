@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>UTL物联通资产系统</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="css/sm.css">
+    <link rel="stylesheet" href="iconfont/iconfont.css">
+    <link href="css/main.css" rel="stylesheet">
+    <script type='text/javascript' src="js/zepto.js" charset='utf-8'></script>
+    <script type='text/javascript' src="js/config.js" charset='utf-8'></script>
+	<script type='text/javascript' src="js/asset.js" charset='utf-8'></script>
+	<script type="text/javascript" src="cordova.js"></script>
+	<script type="text/javascript" src="js/index.js"></script>
+</head>
+<body>
+<div class="page-group">
+    <div class="page">
+    <header class="bar bar-nav bar-nav-blue mousemove">
+        <a class="icon iconfont icon-jiantou-copy pull-left back" href="#" data-transition='slide-out'>
+        </a>
+
+        <h1 class="title">UTL物联通资产系统</h1>
+        <a href="#" class="btniconfont" onclick="onScanning()"><i
+                class="icon iconfont icon-saoyisao1 pull-right"></i></a>
+    </header>
+
+    <div class="content margin-b">
+        <div class="buttons-tab">
+            <a href="#tab1" class="tab-link active button" id="searchTab" >按资产信息查询</a>
+            <a href="#tab2" class="tab-link button">按使用信息查询</a>
+
+        </div>
+        <div class="content-block  tab-content">
+            <div class="tabs">
+                <div id="tab1" class="tab active">
+                    <div id="criteria" class="criteria">
+                        <div class="list-block">
+                            <ul>
+                                <li>
+                                    <div class="item-content">
+                                        <div class="item-inner">
+                                            <div class="item-title label">系统资产编码</div>
+                                            <div class="item-input">
+                                                <input type="text" id="assetId"/>
+                                            </div>
+                                          <!--  <div class="item-media">
+                                                <a href="#" class="btniconfont"><i
+                                                        class="icon iconfont icon-saoyisao4 icon-saoma"></i></a>
+                                            </div>-->
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="item-content">
+                                        <div class="item-inner">
+                                            <div class="item-title label">固定资产卡片编码</div>
+                                            <div class="item-input">
+                                                <input type="text" id="assetCode"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="item-content">
+                                        <div class="item-inner">
+                                            <div class="item-title label">资产名称</div>
+                                            <div class="item-input">
+                                                <input type="text" id="assetName"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                 <li>
+                            <div class="item-content">
+                                <div class="item-inner">
+                                    <div class="item-title label">资产大类</div>
+                                    <div class="item-input">
+                                        <input type="text" id="category-picker-max" value="----" readOnly/>
+                                       <!--  <input type="hidden" id="category-picker-max-hidden" value="" /> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item-content">
+                                <div class="item-inner">
+                                    <div class="item-title label">资产中类</div>
+                                    <div class="item-input">
+                                        <input type="text" id="category-picker-mid" value="----" readOnly/>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item-content">
+                                <div class="item-inner">
+                                    <div class="item-title label">资产小类</div>
+                                    <div class="item-input">
+                                        <input type="text" id="category-picker-sub" value="----" readOnly/>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                                <li>
+                                    <div class="item-content">
+                                        <div class="item-inner">
+                                            <div class="item-title label">使用状态</div>
+                                            <div class="item-input">
+                                                <input type="text" id="status-picker" value="全部"/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="content-block m-tb0">
+                            <a href="#" class="button button-big button-fill button-orange" id="assetMessageSearch">查询</a>
+                        </div>
+                    </div>
+                </div>
+                <div id="tab2" class="tab">
+                    <div id="criteria1" class="criteria" id="criteria2">
+
+                        <div class="list-block">
+                            <ul>
+                                <li>
+                                    <div class="item-content">
+                                        <div class="item-inner">
+                                            <div class="item-title label">领用人编码</div>
+                                            <div class="item-input">
+                                                <input type="text" id="employeeId"/>
+                                            </div>
+                                           <!-- <div class="item-media">
+                                                <a href="#" class="btniconfont"><i class="icon iconfont icon-saoyisao3 icon-erweima"></i></a>
+                                            </div>-->
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="item-content">
+                                        <div class="item-inner">
+                                            <div class="item-title label">领用人工号</div>
+                                            <div class="item-input">
+                                                <input type="text" id="employeeCode"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="item-content">
+                                        <div class="item-inner">
+                                            <div class="item-title label">领用人名称</div>
+                                            <div class="item-input">
+                                                <input type="text" id="employeeName"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="item-content">
+                                        <div class="item-inner">
+                                            <div class="item-title label">一级部门</div>
+                                            <div class="item-input">
+                                                <input type="text" id="department-picker" value="----" readOnly/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="item-content">
+                                        <div class="item-inner">
+                                            <div class="item-title label">二级部门</div>
+                                            <div class="item-input">
+                                                <input type="text" id="department-picker2" value="----" readOnly/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="item-content">
+                                        <div class="item-inner">
+                                            <div class="item-title label">三级部门</div>
+                                            <div class="item-input">
+                                                <input type="text" id="department-picker3" value="----" readOnly/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="item-content">
+                                        <div class="item-inner">
+                                            <div class="item-title label">一级存放点</div>
+                                            <div class="item-input">
+                                                <input type="text" id="picker-site-getplace" value="----" readOnly/>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="item-content">
+                                        <div class="item-inner">
+                                            <div class="item-title label">二级存放点</div>
+                                            <div class="item-input">
+                                                <input type="text" id="picker-site-getplace2" value="----" readOnly/>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="item-content">
+                                        <div class="item-inner">
+                                            <div class="item-title label">三级存放点</div>
+                                            <div class="item-input">
+                                                <input type="text" id="picker-site-getplace3" value="----" readOnly/>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="content-block m-tb0">
+                            <a href="#" class="button button-big button-fill button-confirm" id="useMessageSearch">查询</a>
+                        </div>
+                    </div>
+                </div>
+              <div class="text-center disable-router"><a href="#" class="btniconfont hidecriteria" id="hidecriteria" external ><i
+                        class="icon iconfont icon-icon-double-arrow-up icon-arrow"></i></a>
+                    <a href="#" class="btniconfont arrow-hide showcriteria" id="showcriteria" external><i
+                            class="icon iconfont icon-icon-copy icon-arrow"></i></a>
+                </div>
+            </div>
+        </div>
+		<div id="assetList">
+		</div>
+</div>
+    <div class="bar bar-footer bar-footer-p">
+        <span id="count"></span>
+    </div>
+        </div>
+    </div>
+
+<script type='text/javascript' src="js/sm.js" charset='utf-8'></script>
+<script type="text/javascript" src="js/category.js" charset="utf-8"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".hidecriteria").click(function () {
+            $(".criteria").hide();
+            $(".showcriteria").show();
+            $(".hidecriteria").hide();
+        });
+        $(".showcriteria").click(function () {
+            $(".criteria").show();
+            $(".hidecriteria").show();
+            $(".showcriteria").hide();
+        });
+        
+        //获取资产大类
+    	$.ajax({
+		    type : "POST",
+		   	url:serverUrl,
+		    headers:{"method":"getAssetType","companyId":companyId,"deptId":deptId,"userId":userId,"EId":EId,"WId":WId,"CId":CId},
+		    data: {},
+		    dataType:'json',
+		    success: function(result){
+		    	if(result.retCode==0){
+					var jsonArr=JSON.parse(result.assetTypes).assetTypes;
+					assetMax[0]="----";
+		   			for(var i=0;i<jsonArr.length;i++){
+		   				assetTypeNames[i]=jsonArr[i].assetTypeName;
+		   			}
+		   			for(var i=0;i<jsonArr.length;i++){
+		   				assetTypeIds[i]=jsonArr[i].assetTypeId;
+		   			}
+		   			for(var i=0;i<jsonArr.length;i++){
+		   				assetMax[i+1]=jsonArr[i].assetTypeName+"-"+jsonArr[i].assetTypeId;
+		   			}
+		   		}else{
+		   			assetTypeNames=[];
+		   			assetTypeIds=[];
+		   			assetMax=[];
+		   		}
+	   		 },
+	   		error: function(XMLHttpRequest, textStatus, errorThrown) {
+	            console.log(XMLHttpRequest.status);
+	            $.alert('网络错误,请稍后再试!');
+       		},
+		}); 
+        
+        //查询资产列表
+    	$.ajax({
+		    type : "POST",
+		    url:serverUrl,
+		    headers:{"method":"getAssetList","companyId":companyId,"deptId":deptId,"userId":userId,"EId":EId,"WId":WId,"CId":CId},
+		    async : false,//使用ajax同步
+		    data: {},
+		    dataType:'json',
+		    success: function(result){
+		    	if(result.retCode==0){
+					var jsonArr=JSON.parse(result.assetInfo).assetInfo;
+					if(jsonArr){
+						$("#count").text('共有'+jsonArr.length+'笔记录');
+						var html='';
+						for(var i=0;i<jsonArr.length;i++){
+			   				html=html+'<div class="list-block">'+
+			   			          '<ul>'+
+			   		                '<li class="item-content item-link">'+
+			   		                    '<div class="item-inner">'+
+			   		                        '<div class="list-card" onclick="getAssetInfoDetail('+"'"+jsonArr[i].assetId+"'"+');">'+
+			   		                            '<div class="list-header">系统资产编码:'+jsonArr[i].assetId+' <span class="status color-warning" >'+jsonArr[i].currStateName+'</span></div>'+
+			   		                            '<div class="list-table-content">'+
+			   		                                '<ul>'+
+			   		                                   '<li><span> 固定资产卡片编码：</span><label>'+jsonArr[i].assetCode+'</label></li>'+
+			   		                                   '<li><span> 资产名称：</span><label >'+jsonArr[i].assetName+'</label></li>'+
+			   		                                   '<li><span> 资产类别：</span><label >'+jsonArr[i].assetTypeName+' '+jsonArr[i].assetMidTypeName+' '+jsonArr[i].assetSubTypeName+'</label></li>'+
+			   		                                    '<li>'+
+			   		                                        '<span> 领用人：</span><label >'+jsonArr[i].employeeName+'</label></li>'+
+			   		                                    '<li>'+
+			   		                                       ' <span> 存放位置：</span><label >'+jsonArr[i].placeName1+' '+jsonArr[i].placeName2+' '+jsonArr[i].placeName+'</label></li>'+
+			   		                               '</ul></div>'+
+			   		                        '</div>'+
+			   		                    '</div>'+
+			   		                '</li>'+
+			   		            '</ul>'+
+			   		        '</div>';
+			   			}
+						$("#assetList").html(html);
+					}
+		   		}else{
+		   		 	$.alert('请稍后再试!');
+		   		}
+	   		 },
+	   		error: function(XMLHttpRequest, textStatus, errorThrown) {
+	            console.log(XMLHttpRequest.status);
+	            $.alert('网络错误,请稍后再试!');
+       		},
+		}); 
+        
+    });
+</script>
+
+<script type='text/javascript'>
+
+   	var assetMax=[];
+   	var assetTypeNames=[];//大类
+   	var assetTypeIds=[];
+    
+   	var assetMid=[];
+   	var assetMidTypeNames=[];//中类
+   	var assetMidTypeIds=[];
+   	
+   	var assetSub=[];
+   	var assetSubTypeNames=[];//小类
+   	var assetSubTypeIds=[];
+   	
+   	var maxValue;
+   	var midValue;
+   	var subValue;
+   	
+	//点击大类
+	$("#category-picker-max").click(function(){
+		$("#category-picker-mid").val("----");
+		$("#category-picker-sub").val("----");
+	});
+	
+   	//点击中类
+	$("#category-picker-mid").on("click", function(){
+		maxValue=$("#category-picker-max").val();
+		$("#category-picker-sub").val("----");
+		if(maxValue=="----"){
+			$.alert('请先选择大类!');
+			$("#category-picker-max").val("----");
+			$("#category-picker-mid").val("----");
+		}else{
+			var maxArr=splitByBar(maxValue);
+			var assetTypeId=maxArr[1];
+			
+			$.ajax({
+			    type : "POST",
+			    url:serverUrl,
+			    headers:{"method":"getAssetMidType","companyId":companyId,"deptId":deptId,"userId":userId,"EId":EId,"WId":WId,"CId":CId},
+			    async : false,
+			    data: JSON.stringify({assetTypeId:assetTypeId}),
+			    dataType:'json',
+		   		success: function(result){
+			   		
+			    	if(result.retCode==0){
+						var jsonArr=JSON.parse(result.assetMidTypes).assetMidTypes;
+	
+						assetMid[0]="----";
+			   			for(var i=0;i<jsonArr.length;i++){
+			   				assetMidTypeNames[i]=jsonArr[i].assetMidTypeName;
+			   			}
+			   			for(var i=0;i<jsonArr.length;i++){
+			   				assetMidTypeIds[i]=jsonArr[i].assetMidTypeId;
+			   			}
+			   			for(var i=0;i<jsonArr.length;i++){
+			   				assetMid[i+1]=jsonArr[i].assetMidTypeName+"-"+jsonArr[i].assetMidTypeId;
+			   			}
+			   		}else{
+			   			assetMidTypeNames=[];
+			   			assetMidTypeIds=[];
+			   			assetMid=[];
+			   		}
+		   		 },
+		   		error: function(XMLHttpRequest, textStatus, errorThrown) {
+		            console.log(XMLHttpRequest.status);
+		            $.alert('网络错误,请稍后再试!');
+	       		},
+			}); 
+		}
+	});
+   	
+   	//点击小类
+	$("#category-picker-sub").click(function(){
+		midValue=$("#category-picker-mid").val();
+		if(midValue=="----"){
+			$.alert('请先选择中类!');
+			$("#category-picker-mid").val("----");
+			$("#category-picker-sub").val("----");
+		}else{
+			var midArr=splitByBar(midValue);
+			var assetMidTypeId=midArr[1];
+			
+			$.ajax({
+			    type : "POST",
+			    url:serverUrl,
+			    headers:{"method":"getAssetSubType","companyId":companyId,"deptId":deptId,"userId":userId,"EId":EId,"WId":WId,"CId":CId},
+			    async : false,
+			    data: JSON.stringify({assetMidTypeId:assetMidTypeId}),
+			    dataType:'json',
+		   		success: function(result){
+			   		
+			    	if(result.retCode==0){
+						var jsonArr=JSON.parse(result.assetSubTypes).assetSubTypes;
+						assetSub[0]="----";//设置下来选择的默认值
+			   			for(var i=0;i<jsonArr.length;i++){
+			   				assetSubTypeNames[i]=jsonArr[i].assetSubTypeName;
+			   			}
+			   			for(var i=0;i<jsonArr.length;i++){
+			   				assetSubTypeIds[i]=jsonArr[i].assetSubTypeId;
+			   			}
+			   			for(var i=0;i<jsonArr.length;i++){
+			   				assetSub[i+1]=jsonArr[i].assetSubTypeName+"-"+jsonArr[i].assetSubTypeId;
+			   			}
+			   		}else{
+			   			assetSubTypeNames=[];
+			   			assetSubTypeIds=[];
+			   			assetSub=[];
+			   		}
+		   		 },
+		   		error: function(XMLHttpRequest, textStatus, errorThrown) {
+		            console.log(XMLHttpRequest.status);
+		            $.alert('网络错误,请稍后再试!');
+	       		},
+			}); 
+		}
+	});
+ 	
+	//大类选择
+    $("#category-picker-max").picker({
+
+    	  inputReadOnly:true,
+    	  toolbarTemplate: '<header class="bar bar-nav">\<button class="button button-link pull-left"></button>\<button class="button button-link pull-right close-picker">确定</button>\<h1 class="title">大类</h1>\</header>',
+    	  cols: [
+    	    {
+    	      textAlign: 'center',
+    	      values: assetMax,
+    	    }
+    	  ],
+    	  onClose:function(){
+    		  maxValue=$("#category-picker-max").val();
+    	  }
+    });
+	
+	//中类选择 
+    $("#category-picker-mid").picker({
+    	  inputReadOnly:true,
+    	  toolbarTemplate: '<header class="bar bar-nav">\<button class="button button-link pull-left"></button>\<button class="button button-link pull-right close-picker">确定</button>\<h1 class="title">中类</h1>\</header>',
+    	  cols: [
+    	    {
+    	      textAlign: 'center',
+    	      values: assetMid,
+    	    }
+    	  ],
+    	  onClose:function(){
+    		 /*  midValue=  $("#category-picker-mid").val();
+    		  if(midValue=="----"&&maxValue!="----"&&maxValue){
+    			  $.alert('请选择中类!');
+    		  } */
+    	  }
+    });
+	
+  	//小类选择
+    $("#category-picker-sub").picker({
+    	  inputReadOnly:true,
+    	  toolbarTemplate: '<header class="bar bar-nav">\<button class="button button-link pull-left"></button>\<button class="button button-link pull-right close-picker">确定</button>\<h1 class="title">小类</h1>\</header>',
+    	  cols: [
+    	    {
+    	      textAlign: 'center',
+    	      values: assetSub,
+    	    }
+    	  ],
+    	  onClose:function(){
+    		 /*  subValue=  $("#category-picker-sub").val();
+    		  if(subValue=="----"&&maxValue!="----"&&midValue!="----"){
+    			  $.alert('请选择小类!');
+    		  } */
+    	  }
+    }); 
+</script>
+<script>
+	var departmentMax=[];
+	var departmentNames=[];//一级部门
+	var departmentIds=[];
+
+	var departmentMid=[];
+	var departmentMidNames=[];//二级部门
+	var departmentMidIds=[];
+	
+	var departmentSub=[];
+	var departmentSubNames=[];//三级部门
+	var departmentSubIds=[];
+	
+	var maxDepartment;
+	var midDepartment;
+	var subDepartment;
+	
+	//点击一级部门
+	$("#department-picker").click(function(){
+		$("#department-picker2").val("----");
+		$("#department-picker3").val("----");
+		
+		$.ajax({
+		    type : "POST",
+		    url:serverUrl,
+		    headers:{"method":"getDepart1","companyId":companyId,"deptId":deptId,"userId":userId,"EId":EId,"WId":WId,"CId":CId},
+		    async : false,
+		    data: {},
+		    dataType:'json',
+	   		success: function(result){
+		    	if(result.retCode==0){
+					var jsonArr=JSON.parse(result.departInfo).departInfo;
+					departmentMax[0]="----";
+		   			for(var i=0;i<jsonArr.length;i++){
+		   				departmentNames[i]=jsonArr[i].departmentName;
+		   			}
+		   			for(var i=0;i<jsonArr.length;i++){
+		   				departmentIds[i]=jsonArr[i].departmentId;
+		   			}
+		   			for(var i=0;i<jsonArr.length;i++){
+		   				departmentMax[i+1]=jsonArr[i].departmentName+"-"+jsonArr[i].departmentId;
+		   			}
+		   		}else{
+		   			departmentNames=[];
+		   			departmentIds=[];
+		   			departmentMax=[];
+		   		}
+	   		 },
+	   		error: function(XMLHttpRequest, textStatus, errorThrown) {
+	            console.log(XMLHttpRequest.status);
+	            $.alert('网络错误,请稍后再试!');
+       		},
+		}); 
+	});
+	
+   	//点击二级部门
+	$("#department-picker2").on("click", function(){
+		maxDepartment=$("#department-picker").val();
+		$("#department-picker3").val("----");
+		if(maxDepartment=="----"){
+			$.alert('请先选择一级部门!');
+			$("#department-picker").val("----");
+			$("#department-picker2").val("----");
+		}else{
+			var maxArr=splitByBar(maxDepartment);
+			var departmentId=maxArr[1];
+			
+			$.ajax({
+			    type : "POST",
+			    url:serverUrl,
+			    headers:{"method":"getDepart2","companyId":companyId,"deptId":deptId,"userId":userId,"EId":EId,"WId":WId,"CId":CId},
+			    async : false,
+			    data: JSON.stringify({departId:departmentId}),
+			    dataType:'json',
+		   		success: function(result){
+			   		
+			    	if(result.retCode==0){
+						var jsonArr=JSON.parse(result.departInfo).departInfo;
+	
+						departmentMid[0]="----";
+			   			for(var i=0;i<jsonArr.length;i++){
+			   				departmentMidNames[i]=jsonArr[i].departmentName;
+			   			}
+			   			for(var i=0;i<jsonArr.length;i++){
+			   				departmentMidIds[i]=jsonArr[i].departmentId;
+			   			}
+			   			for(var i=0;i<jsonArr.length;i++){
+			   				departmentMid[i+1]=jsonArr[i].departmentName+"-"+jsonArr[i].departmentId;
+			   			}
+			   		}else{
+			   			departmentName=[];
+			   			departmentId=[];
+			   			departmentMid=[];
+			   		}
+		   		 },
+		   		error: function(XMLHttpRequest, textStatus, errorThrown) {
+		            console.log(XMLHttpRequest.status);
+		            $.alert('网络错误,请稍后再试!');
+	       		},
+			}); 
+		}
+	});
+   	
+   	//点击三级部门
+	$("#department-picker3").click(function(){
+		midDepartment=$("#department-picker2").val();
+		if(midDepartment=="----"){
+			$.alert('请先选择二级部门!');
+			$("#department-picker2").val("----");
+			$("#department-picker3").val("----");
+		}else{
+			var midArr=splitByBar(midDepartment);
+			var departmentId=midArr[1];
+			
+			$.ajax({
+			    type : "POST",
+			    url:serverUrl,
+			    headers:{"method":"getDepart3","companyId":companyId,"deptId":deptId,"userId":userId,"EId":EId,"WId":WId,"CId":CId},
+			    async : false,
+			    data: JSON.stringify({departId:departmentId}),
+			    dataType:'json',
+		   		success: function(result){
+			   		
+			    	if(result.retCode==0){
+						var jsonArr=JSON.parse(result.departInfo).departInfo;
+						departmentSub[0]="----";//设置下来选择的默认值
+			   			for(var i=0;i<jsonArr.length;i++){
+			   				departmentSubNames[i]=jsonArr[i].departmentName;
+			   			}
+			   			for(var i=0;i<jsonArr.length;i++){
+			   				departmentSubIds[i]=jsonArr[i].departmentId;
+			   			}
+			   			for(var i=0;i<jsonArr.length;i++){
+			   				departmentSub[i+1]=jsonArr[i].departmentName+"-"+jsonArr[i].departmentId;
+			   			}
+			   		}else{
+			   			departmentSubNames=[];
+			   			departmentSubIds=[];
+			   			departmentSub=[];
+			   		}
+		   		 },
+		   		error: function(XMLHttpRequest, textStatus, errorThrown) {
+		            console.log(XMLHttpRequest.status);
+		            $.alert('网络错误,请稍后再试!');
+	       		},
+			}); 
+		}
+	});
+	
+   	//一级部门选择
+	$("#department-picker").picker({   
+		 inputReadOnly:true,
+  	 	 toolbarTemplate: '<header class="bar bar-nav">\<button class="button button-link pull-left"></button>\<button class="button button-link pull-right close-picker">确定</button>\<h1 class="title">一级部门</h1>\</header>',
+  	 	 cols: [
+	   	    {
+	   	      textAlign: 'center',
+	   	      values: departmentMax,
+	   	    }
+  	  	],
+  	  onClose:function(){
+  		maxDepartment=$("#department-picker").val();
+	  }
+	}); 
+	
+   	
+	//二级部门选择 
+    $("#department-picker2").picker({
+    	  inputReadOnly:true,
+    	  toolbarTemplate: '<header class="bar bar-nav">\<button class="button button-link pull-left"></button>\<button class="button button-link pull-right close-picker">确定</button>\<h1 class="title">二级部门</h1>\</header>',
+    	  cols: [
+    	    {
+    	      textAlign: 'center',
+    	      values: departmentMid,
+    	    }
+    	  ],
+    	  onClose:function(){
+    		  midDepartment=  $("#department-picker2").val();
+    		  if(midDepartment=="----"&&maxDepartment!="----"&&maxDepartment){
+    			  $.alert('请选择二级部门!');
+    		  }
+    	  }
+    });
+	
+  	//三级部门选择
+    $("#department-picker3").picker({
+    	  inputReadOnly:true,
+    	  toolbarTemplate: '<header class="bar bar-nav">\<button class="button button-link pull-left"></button>\<button class="button button-link pull-right close-picker">确定</button>\<h1 class="title">三级部门</h1>\</header>',
+    	  cols: [
+    	    {
+    	      textAlign: 'center',
+    	      values: departmentSub,
+    	    }
+    	  ],
+    	  onClose:function(){
+    		  subDepartment=  $("#department-picker3").val();
+    		  if(subDepartment=="----"&&maxDepartment!="----"&&midDepartment!="----"){
+    			  $.alert('请选择三级部门!');
+    		  }
+    	  }
+    }); 
+</script>
+<script>
+	var placeMax=[];
+	var placeNames=[];//一级存放
+	var placeIds=[];
+
+	var placeMid=[];
+	var placeMidNames=[];//二级存放
+	var placeMidIds=[];
+	
+	var placeSub=[];
+	var placeSubNames=[];//三级存放
+	var placeSubIds=[];
+	
+	var maxPlaceValue;
+	var midPlaceValue;
+	var subPlaceValue;
+
+	//点击一级存放点
+	$("#picker-site-getplace").click(function(){
+		$("#picker-site-getplace2").val("----");
+		$("#picker-site-getplace3").val("----");
+    	$.ajax({
+		    type : "POST",
+		   	url:serverUrl,
+		    headers:{"method":"getPlace","companyId":companyId,"deptId":deptId,"userId":userId,"EId":EId,"WId":WId,"CId":CId},
+		    async : false,
+		    data: {},
+		    dataType:'json',
+		    success: function(result){
+		   		
+		    	if(result.retCode==0){
+		    		var jsonArr=JSON.parse(result.placeInfo).placeInfo;
+					placeMax[0]="----";//设置下拉选择的默认值
+		   			for(var i=0;i<jsonArr.length;i++){
+		   				placeNames[i]=jsonArr[i].placeName;
+		   			}
+		   			for(var i=0;i<jsonArr.length;i++){
+		   				placeIds[i]=jsonArr[i].placeId;
+		   			}
+		   			for(var i=0;i<jsonArr.length;i++){
+		   				placeMax[i+1]=jsonArr[i].placeName+"-"+jsonArr[i].placeId;
+		   			}
+		   		}else{
+		   			placeNames=[];
+		   			placeIds=[];
+		   			placeMax=[];
+		   		}
+	   		 },
+	   		error: function(XMLHttpRequest, textStatus, errorThrown) {
+	            console.log(XMLHttpRequest.status);
+	            $.alert('网络错误,请稍后再试!');
+       		},
+		}); 
+	});
+	
+	//点击二级存放点
+	$("#picker-site-getplace2").on("click", function(){
+		maxPlaceValue=$("#picker-site-getplace").val();
+		$("#picker-site-getplace3").val("----");
+		if(maxPlaceValue=="----"){
+			$.alert('请先选择一级存放点!');
+			$("#picker-site-getplace").val("----");
+			$("#picker-site-getplace2").val("----");
+		}else{
+			var maxArr=splitByBar(maxPlaceValue);
+			var placeId=maxArr[1];
+			
+			$.ajax({
+			    type : "POST",
+			    url:serverUrl,
+			    headers:{"method":"getPlace2","companyId":companyId,"deptId":deptId,"userId":userId,"EId":EId,"WId":WId,"CId":CId},
+			    async : false,
+			    data: JSON.stringify({placeId:placeId}),
+			    dataType:'json',
+		   		success: function(result){
+			   		
+			    	if(result.retCode==0){
+						var jsonArr=JSON.parse(result.placeInfo).placeInfo;
+						placeMid[0]="----";
+			   			for(var i=0;i<jsonArr.length;i++){
+			   				placeMidNames[i]=jsonArr[i].placeName;
+			   			}
+			   			for(var i=0;i<jsonArr.length;i++){
+			   				placeMidIds[i]=jsonArr[i].placeId;
+			   			}
+			   			for(var i=0;i<jsonArr.length;i++){
+			   				placeMid[i+1]=jsonArr[i].placeName+"-"+jsonArr[i].placeId;
+			   			}
+			   		}else{
+			   			placeMidNames=[];
+			   			placeMidIds=[];
+			   			placeMid=[];
+			   		}
+		   		 },
+		   		error: function(XMLHttpRequest, textStatus, errorThrown) {
+		            console.log(XMLHttpRequest.status);
+		            $.alert('网络错误,请稍后再试!');
+	       		},
+			}); 
+		}
+	});
+		
+	//点击三级存放点
+	$("#picker-site-getplace3").click(function(){
+		midPlaceValue=$("#picker-site-getplace2").val();
+		if(midPlaceValue=="----"){
+			$.alert('请先选择二级存放点!');
+			$("#picker-site-getplace2").val("----");
+			$("#picker-site-getplace3").val("----");
+		}else{
+			var midArr=splitByBar(midPlaceValue);
+			var placeMidId=midArr[1];
+			
+			$.ajax({
+			    type : "POST",
+			    url:serverUrl,
+			    headers:{"method":"getPlace3","companyId":companyId,"deptId":deptId,"userId":userId,"EId":EId,"WId":WId,"CId":CId},
+			    async : false,
+			    data: JSON.stringify({placeId:placeMidId}),
+			    dataType:'json',
+		   		success: function(result){
+			   		
+			    	if(result.retCode==0){
+						var jsonArr=JSON.parse(result.placeInfo).placeInfo;
+						placeSub[0]="----";//设置下来选择的默认值
+			   			for(var i=0;i<jsonArr.length;i++){
+			   				placeSubNames[i]=jsonArr[i].placeName;
+			   			}
+			   			for(var i=0;i<jsonArr.length;i++){
+			   				placeSubIds[i]=jsonArr[i].placeId;
+			   			}
+			   			for(var i=0;i<jsonArr.length;i++){
+			   				placeSub[i+1]=jsonArr[i].placeName+"-"+jsonArr[i].placeId;
+			   			}
+			   		}else{
+			   			placeSubNames=[];
+			   			placeSubIds=[];
+			   			placeSub=[];
+			   		}
+		   		 },
+		   		error: function(XMLHttpRequest, textStatus, errorThrown) {
+		            console.log(XMLHttpRequest.status);
+		            $.alert('网络错误,请稍后再试!');
+	       		},
+			}); 
+		}
+	});
+
+	//一级存放选择
+	$("#picker-site-getplace").picker({
+	
+		  inputReadOnly:true,
+		  toolbarTemplate: '<header class="bar bar-nav">\<button class="button button-link pull-left"></button>\<button class="button button-link pull-right close-picker">确定</button>\<h1 class="title">一级存放点</h1>\</header>',
+		  cols: [
+		    {
+		      textAlign: 'center',
+		      values: placeMax,
+		    }
+		  ],
+		  onClose:function(){
+			  maxPlaceValue=$("#picker-site-getplace").val();
+		  }
+	});
+	
+	//二级选择 
+	$("#picker-site-getplace2").picker({
+		  inputReadOnly:true,
+		  toolbarTemplate: '<header class="bar bar-nav">\<button class="button button-link pull-left"></button>\<button class="button button-link pull-right close-picker">确定</button>\<h1 class="title">二级存放点</h1>\</header>',
+		  cols: [
+		    {
+		      textAlign: 'center',
+		      values: placeMid,
+		    }
+		  ],
+		  onClose:function(){
+			  midPlaceValue=$("#picker-site-getplace2").val();
+			  if(midPlaceValue=="----"&&maxPlaceValue!="----"&&maxPlaceValue){
+				  $.alert('请选择二级存放点!');
+			  }
+		  }
+	});
+	
+	//三级存放选择
+	$("#picker-site-getplace3").picker({
+		  inputReadOnly:true,
+		  toolbarTemplate: '<header class="bar bar-nav">\<button class="button button-link pull-left"></button>\<button class="button button-link pull-right close-picker">确定</button>\<h1 class="title">三级存放点</h1>\</header>',
+		  cols: [
+		    {
+		      textAlign: 'center',
+		      values: placeSub,
+		    }
+		  ],
+		  onClose:function(){
+			  subPlaceValue=$("#picker-site-getplace3").val();
+			  if(subPlaceValue=="----"&&maxPlaceValue!="----"&&midPlaceValue!="----"){
+				  $.alert('请选择三级存放点!');
+			  }
+		  }
+	}); 
+</script>
+<script>
+	$("#useMessageSearch").click(function(){
+		var employeeId=$("#employeeId").val();
+		var employeeCode=$("#employeeCode").val();
+		var employeeName=$("#employeeName").val();
+		
+		var departsub=$("#department-picker3").val();
+		var departMid=$("#department-picker2").val();
+		var departMax=$("#department-picker").val();
+		depart=splitByBar(departsub)[1];//三级部门
+		depart2=splitByBar(departMid)[1];//二级部门
+		depart1=splitByBar(departMax)[1];//一级部门
+		/*if(departMax!="----"&&depart=="----"){
+			$.alert('请输入三级部门查询!');
+			return;
+		}else{
+			depart=splitByBar(depart)[1];
+		} */
+		
+		var placeId=$("#picker-site-getplace3").val();
+		var placeMidId=$("#picker-site-getplace2").val();
+		var placeMaxId=$("#picker-site-getplace").val();
+		placeId=splitByBar(placeId)[1];//三级
+		placeId2=splitByBar(placeMidId)[1];//二级
+		placeId1=splitByBar(placeMaxId)[1];//一级
+		/* if(placeMaxId!="----"&&placeId=="----"){
+			$.alert('请输入三级存放点查询!');
+			return;
+		}else{
+			placeId=splitByBar(placeId)[1];
+		} */
+		
+		 employee={employeeId:employeeId,employeeCode:employeeCode,employeeName:employeeName,placeId:placeId,placeId1:placeId1,placeId2:placeId2,depart:depart,depart1:depart1,depart2:depart2,assetId:'',assetCode:'',assetName:'',assetTypeId:"",assetMidTypeId:"",assetSubTypeId:"",state:''};
+		 headers={"method":"aListCondition","companyId":companyId,"deptId":deptId,"userId":userId,"EId":EId,"WId":WId,"CId":CId};
+		 search(employee,headers);
+	}); 
+	$("#assetMessageSearch").click(function(){
+		var assetId=$("#assetId").val();
+		var assetCode=$("#assetCode").val();
+		var assetName=$("#assetName").val();
+		
+		var assetSubTypeId=$("#category-picker-sub").val();
+		var assetMidTypeId=$("#category-picker-mid").val();
+		var assetMaxTypeId=$("#category-picker-max").val();
+		assetSubTypeId=splitByBar(assetSubTypeId)[1];
+		assetMidTypeId=splitByBar(assetMidTypeId)[1];
+		assetTypeId=splitByBar(assetMaxTypeId)[1];
+		
+		/* if(assetMaxTypeId!="----"&&assetSubTypeId=="----"){
+			$.alert('请输入小类查询!');
+			return;
+		}else{
+			assetSubTypeId=splitByBar(assetSubTypeId)[1];
+		} */
+		
+		var state='';
+		var stateText=$("#status-picker").val();
+		switch(stateText)
+		{
+		case '在库':
+	      state='0';
+		  break;
+		case '领用中':
+		  state='1';
+		  break;
+		case '报废':
+	      state='2';
+		  break;
+		case '维修':
+		  state='3';
+		  break;
+		default:
+	      state='';
+		}
+
+		asset={employeeId:'',employeeCode:'',employeeName:'',placeId:"",placeId1:"",placeId2:"",depart:"",depart1:"",depart2:"",assetId:assetId,assetCode:assetCode,assetName:assetName,assetName:assetName,assetTypeId:assetTypeId,assetMidTypeId:assetMidTypeId,assetSubTypeId:assetSubTypeId,state:state};
+		headers={"method":"aListCondition","companyId":companyId,"deptId":deptId,"userId":userId,"EId":EId,"WId":WId,"CId":CId};
+		search(asset,headers);
+	});
+	
+
+</script>
+<script>
+    $("#status-picker").picker({
+        toolbarTemplate: '<header class="bar bar-nav">\<button class="button button-link pull-right close-picker">确定</button>\<h1 class="title">使用状态</h1>\</header>',
+        cols: [
+            {
+                textAlign: 'center',
+                values: ['全部', '领用中','在库','报废','维修']
+            }
+        ]
+    });
+    
+    //按条件搜索
+    function search(message,headers){
+    	$.ajax({
+		    type : "POST",
+		    url:serverUrl,
+		    headers:headers,
+		    data: JSON.stringify(message),
+		    dataType:'json',
+	   		success: function(result){
+	   			console.log(result);
+		    	if(result.retCode==0){
+		    		var jsonArr=JSON.parse(result.assetInfo).assetInfo;
+		    		$("#count").text('共有'+jsonArr.length+'笔记录');
+		    		$("#assetList").html("");
+					var html='';
+					for(var i=0;i<jsonArr.length;i++){
+		   				html=html+'<div class="list-block">'+
+		   			          '<ul>'+
+		   		                '<li class="item-content item-link">'+
+		   		                    '<div class="item-inner">'+
+		   		                        '<div class="list-card" onclick="getAssetInfoDetail('+"'"+jsonArr[i].assetId+"'"+');">'+
+		   		                            '<div class="list-header">系统资产编码:'+jsonArr[i].assetId+' <span class="status color-warning" >'+jsonArr[i].currStateName+'</span></div>'+
+		   		                            '<div class="list-table-content">'+
+		   		                                '<ul>'+
+		   		                                   '<li><span> 固定资产卡片编码：</span><label>'+jsonArr[i].assetCode+'</label></li>'+
+		   		                                   '<li><span> 资产名称：</span><label >'+jsonArr[i].assetName+'</label></li>'+
+		   		                                   '<li><span> 资产类别：</span><label >'+jsonArr[i].assetTypeName+' '+jsonArr[i].assetMidTypeName+' '+jsonArr[i].assetSubTypeName+'</label></li>'+
+		   		                                    '<li>'+
+		   		                                        '<span> 领用人：</span><label >'+jsonArr[i].employeeName+'</label></li>'+
+		   		                                    '<li>'+
+		   		                                       ' <span> 存放位置：</span><label >'+jsonArr[i].placeName1+' '+jsonArr[i].placeName2+' '+jsonArr[i].placeName+'</label></li>'+
+		   		                               '</ul></div>'+
+		   		                        '</div>'+
+		   		                    '</div>'+
+		   		                '</li>'+
+		   		            '</ul>'+
+		   		        '</div>';
+		   			}
+					$("#assetList").html(html);
+		   		}else{
+		   		  $.alert('网络错误,请稍后再试!');
+		   		}
+	   		 },
+	   		error: function(XMLHttpRequest, textStatus, errorThrown) {
+	            console.log(XMLHttpRequest.status);
+	            $.alert('网络错误,请稍后再试!');
+       		},
+		}); 
+    }
+</script>
+<script>
+	//扫码
+	function onScanning(){
+		cordova.plugins.barcodeScanner.scan(
+	      function (result) {
+	        /*   alert("We got a barcode\n" +
+	                "Result: " + result.text + "\n" +
+	                "Format: " + result.format + "\n" +
+	                "Cancelled: " + result.cancelled); */
+	                
+	    	 var id=result.text;//id='A0101:020302-00003';
+	         //扫码后查询
+	         message={id:id};
+	     	 headers={"method":"aListScancode","companyId":companyId,"deptId":deptId,"userId":userId,"EId":EId,"WId":WId,"CId":CId}
+	    	 search(message,headers);
+	      }, 
+	      function (error) {
+	          $.alert("Scanning failed: " + error);
+	      }
+	   );
+	} 
+	
+	//进入资产详情页
+	function getAssetInfoDetail(assetId){
+		
+		$.ajax({
+		    type : "POST",
+		 	url:serverUrl,
+		    headers:{"method":"getAssetInfo","companyId":companyId,"deptId":deptId,"userId":userId,"EId":EId,"WId":WId,"CId":CId},
+		    async : false,
+		    data: JSON.stringify({assetId:assetId}),
+		    dataType:'json',
+	   		success: function(result){
+		   		console.log(result);
+		    	if(result.retCode==0){
+		    		if(result.assetId){
+			    		storage["assetId"+assetId]=result.assetId;
+			    		storage["assetCode"+assetId]=result.assetCode;
+			    		storage["assetName"+assetId]=result.assetName;
+			    		storage["assetTypeName"+assetId]=result.assetTypeName+" "+result.assetMidTypeName+" "+result.assetSubTypeName+" ";
+			    		storage["place"+assetId]=result.place1+" "+result.place2+" "+result.place3;
+//			    		storage["configInfo"+assetId]=result.configInfo;
+// 			    		storage["caption"+assetId]=result.caption;
+// 			    		storage["fieldName"+assetId]=result.fieldName;
+			    		storage["picture"+assetId]=result.picture;
+			    		
+			    		storage["price"+assetId]=result.price;
+			    		storage["mTelephone"+assetId]=result.mTelephone;
+			    		storage["manufacturer"+assetId]=result.manufacturer;
+			    		storage["rentProvider"+assetId]=result.rentProvider;
+			    		storage["city"+assetId]=result.city;
+			    		storage["note"+assetId]=result.note;
+			    		storage["purchase"+assetId]=result.purchase;//true为购置
+			    		storage["employeeName"+assetId]=result.employeeName;
+			    		storage["cV"+assetId]=result.cV;//true为购置
+			    		storage["lastTakeDate"+assetId]=result.lastTakeDate;
+			    		
+			    		storage["purchaseDate"+assetId]=result.purchaseDate;
+			    		storage["depreciation"+assetId]=result.depreciation;
+			    		storage["warranty"+assetId]=result.warranty;
+			    		storage["invoice"+assetId]=result.invoice;
+			    		storage["invoiceDate"+assetId]=result.invoiceDate;
+			    		
+			    		storage["rentBegDate"+assetId]=result.rentBegDate;
+			    		storage["rentEndDate"+assetId]=result.rentEndDate;
+			    		
+			    		self.location='FixedAssetDetail.html?assetId='+assetId; 
+		    		}else{
+		    			$.alert('此资产无详情!');
+		    		}
+		   		}else{
+		   			$.alert('网络错误请稍后再试!');
+		   		}
+	   		 },
+	   		error: function(XMLHttpRequest, textStatus, errorThrown) {
+	            console.log(XMLHttpRequest.status);
+	            $.alert('网络错误,请稍后再试!');
+       		},
+		}); 
+	}
+</script>
+</body>
+</html>

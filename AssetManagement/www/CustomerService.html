@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>UTL物联通资产系统</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="css/sm.css">
+    <link rel="stylesheet" href="iconfont/iconfont.css">
+     <link href="css/main.css" rel="stylesheet">
+ 
+  </head>
+  <body>
+    <div class="page-group">
+        <div class="page">
+      <header class="bar bar-nav bar-nav-blue mousemove" >
+          <a class="icon iconfont icon-jiantou-copy pull-left back" href="#" data-transition='slide-out'>
+    </a>
+    <h1 class="title">联系客服</h1>
+ </header>
+
+ <div class="content content-rlb">
+     <h1 class="text-center" ><span class="icon iconfont icon-kefudianhua font-18 font-color1 ">13800138000</span></h1>
+     <p class="color-warning">温馨提示：基于安全的原因，大部分智能手机默认禁用应用程序
+         的拨号功能，在使用本应用的<strong>拨号</strong>功能前，需要对<strong>物资管理</strong>
+             授予拨打电话权限。您可通过手机系统的“设置/权限设置”来开通
+             ，一些手机需要通过第三方软件如手机管家来设置应用的拨号权
+             限。</p>
+     <div class="content-block">
+  <a href="#" class="button button-big button-fill button-success">拨号</a>
+  </div>
+    </div>
+   </div></div>
+     <script type='text/javascript' src="js/zepto.js" charset='utf-8'></script>
+    <script type='text/javascript' src="js/sm.js" charset='utf-8'></script>
+
+<script>
+$("#picker-name").picker({
+  toolbarTemplate: '<header class="bar bar-nav">\
+  <button class="button button-link pull-right close-picker">确定</button>\
+  <h1 class="title">请选择具体位置</h1>\
+  </header>',
+  cols: [
+    {
+      textAlign: 'center',
+      values: ['工厂', '办公楼']
+      //如果你希望显示文案和实际值不同，可以在这里加一个displayValues: [.....]
+    },
+    {
+      textAlign: 'center',
+      values: ['一栋', '二栋', '三栋', '四栋', '五栋', '六栋', '七栋']
+    },
+    {
+      textAlign: 'center',
+      values: ['一楼', '二楼','三楼']
+    }
+  ]
+});
+</script>
+    </body>
+    </html>

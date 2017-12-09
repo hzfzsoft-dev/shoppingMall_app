@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>UTL物联通资产系统</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="css/sm.css">
+    <link rel="stylesheet" href="iconfont/iconfont.css">
+     <link href="css/main.css" rel="stylesheet">
+ 
+  </head>
+  <body>
+    <div class="page-group">
+        <div class="page">
+      <header class="bar bar-nav bar-nav-blue mousemove" >
+          <a class="icon iconfont icon-jiantou-copy pull-left back" href="#" data-transition='slide-out'>
+    </a>
+
+    <h1 class="title">资产盘点列表</h1>
+          <a class="button button-white pull-right" href="FixedAssetInventory.html" external>
+              新增
+              </a>
+ </header>
+
+ <div class="content" >
+   <!--   <div class="list-block">
+         <ul>
+             <li class="item-content item-link">
+                <div class="item-inner">
+
+                    <div class="list-card">
+                        <div class="list-header">盘点单号:922266446726 <span class="font-color5">进行中</span></div>
+                        <div class="list-table-content">
+                            <div class="item-title-row">
+                           三级测试</div>
+                        </div>
+                        <div class="list-footer">
+                            <span>2017-04-22</span>
+                            <span>赵普明</span>
+                        </div></div>
+                    </div>
+             </li>
+             </ul>
+         </div>
+     <div class="list-block">
+         <ul>
+             <li class="item-content item-link">
+                 <div class="item-inner">
+
+                     <div class="list-card">
+                         <div class="list-header">盘点单号:922266446726 <span class="font-color5">进行中</span></div>
+                         <div class="list-table-content">
+                             <div class="item-title-row">
+                                 三级测试</div>
+                         </div>
+                         <div class="list-footer">
+                             <span>2017-04-22</span>
+                             <span>赵普明</span>
+                         </div></div>
+                 </div>
+             </li>
+         </ul>
+     </div>
+     <div class="list-block">
+         <ul>
+             <li class="item-content item-link">
+                 <div class="item-inner">
+
+                     <div class="list-card">
+                         <div class="list-header">盘点单号:922266446726 <span class="font-color5">进行中</span></div>
+                         <div class="list-table-content">
+                             <div class="item-title-row">
+                                 三级测试</div>
+                         </div>
+                         <div class="list-footer">
+                             <span>2017-04-22</span>
+                             <span>赵普明</span>
+                         </div></div>
+                 </div>
+             </li>
+         </ul>
+     </div>
+     <div class="list-block">
+         <ul>
+             <li class="item-content item-link">
+                 <div class="item-inner">
+
+                     <div class="list-card">
+                         <div class="list-header">盘点单号:922266446726 <span class="font-color5">进行中</span></div>
+                         <div class="list-table-content">
+                             <div class="item-title-row">
+                                 三级测试</div>
+                         </div>
+                         <div class="list-footer">
+                             <span>2017-04-22</span>
+                             <span>赵普明</span>
+                         </div></div>
+                 </div>
+             </li>
+         </ul>
+     </div>
+     <div class="list-block">
+         <ul>
+             <li class="item-content item-link">
+                 <div class="item-inner">
+
+                     <div class="list-card">
+                         <div class="list-header">盘点单号:922266446726 <span class="font-color5">进行中</span></div>
+                         <div class="list-table-content">
+                             <div class="item-title-row">
+                                 三级测试</div>
+                         </div>
+                         <div class="list-footer">
+                             <span>2017-04-22</span>
+                             <span>赵普明</span>
+                         </div></div>
+                 </div>
+             </li>
+         </ul>
+     </div> 
+     <div class="list-block">
+         <ul>
+             <li class="item-content item-link">
+                 <div class="item-inner">
+
+                     <div class="list-card">
+                         <div class="list-header">盘点单号:922266446726 <span class="font-color5">进行中</span></div>
+                         <div class="list-table-content">
+                             <div class="item-title-row">
+                                 三级测试</div>
+                         </div>
+                         <div class="list-footer">
+                             <span>2017-04-22</span>
+                             <span>赵普明</span>
+                         </div></div>
+                 </div>
+             </li>
+         </ul>
+     </div>-->
+	<div id="inventoryList"></div>
+     </div>
+    </div>
+   </div> 
+<script type='text/javascript' src="js/zepto.js" charset='utf-8'></script>
+<script type='text/javascript' src="js/sm.js" charset='utf-8'></script>
+<script type="text/javascript" src="js/category.js" charset="utf-8"></script>
+<script type='text/javascript' src="js/asset.js" charset='utf-8'></script>
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	//盘点列表
+	$.ajax({
+	    type : "POST",
+	    url:serverUrl,
+	    headers:{"method":"getAInventoryList","companyId":companyId,"deptId":deptId,"userId":userId,"EId":EId,"WId":WId,"CId":CId},
+	    data: {},
+	    dataType:'json',
+	    success: function(result){
+				console.log(result);
+		    	if(result.retCode==0){
+					var jsonArr=JSON.parse(result.inventoryInfo).inventoryInfo;
+					if(jsonArr){
+						var html='';
+						for(var i=0;i<jsonArr.length;i++){
+					/* 		var place1=jsonArr[i].placeName1;
+							var place2=jsonArr[i].placeName2;
+							var place3=jsonArr[i].placeName;
+							place1?place1:""; */
+							
+			   				html=html+ '<div class="list-block">'+
+			   	         					'<ul>'+
+			            						 '<li class="item-content item-link" onclick="goInventory('+"'"+jsonArr[i].inventoryNumber+"&"+jsonArr[i].placeId1+"&"+jsonArr[i].placeId2+"&"+jsonArr[i].placeId3+"&"+jsonArr[i].placeName1+"&"+jsonArr[i].placeName2+"&"+jsonArr[i].placeName+"'"+');">'+
+			                 						'<div class="item-inner">'+
+			                     						'<div class="list-card">'+
+			                         						'<div class="list-header">盘点单号:'+jsonArr[i].inventoryNumber+'</div>'+
+			                         						'<div class="list-table-content">'+
+			                             						'<div class="item-title-row">'+jsonArr[i].placeName1+"  "+jsonArr[i].placeName2+"  "+jsonArr[i].placeName+'</div>'+
+			                        				 		'</div>'+
+								                         	'<div class="list-footer">'+
+									                             '<span>'+jsonArr[i].inventoryTime+'</span>'+
+									                             '<span>'+jsonArr[i].userName+'</span>'+
+									                             '<span style="color:#09a201">进行中</span>'+
+								                         	'</div>'+
+								                      	'</div>'+
+								                 	'</div>'+
+			             						'</li>'+
+			         						'</ul>'+
+			     						'</div>';
+			   			}
+						$("#inventoryList").html(html);
+					}
+		   		}else{
+		   		 	$.alert('请稍后再试!');
+		   		}
+			 },
+			error: function(XMLHttpRequest, textStatus, errorThrown) {
+		        console.log(XMLHttpRequest.status);
+		        $.alert('网络错误,请稍后再试!');
+			},
+	});
+});
+
+function goInventory(info){
+	var inv=splitStr(info,"&");
+	var inventoryNumber=inv[0];
+	
+	var place1=inv[1];
+	var place2=inv[2];
+	var place3=inv[3];
+	
+	var placeName1=inv[4];
+	var placeName2=inv[5];
+	var placeName3=inv[6];
+
+	if(inventoryNumber){
+		if(place1=='无'){
+			self.location='FixedAssetInventory.html?inventoryNumber='+inventoryNumber+'&place1='+place1; 
+		}else{
+			self.location='FixedAssetInventory.html?inventoryNumber='+inventoryNumber+'&place1='+place1+'&place2='+place2+'&place3='+place3+'&placeName1='+placeName1+'&placeName2='+placeName2+'&placeName3='+placeName3; 
+		}
+	}else{
+		$.alert('未获取资产盘点信息');
+	}
+}
+</script>
+</body>
+</html>
